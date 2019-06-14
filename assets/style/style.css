@@ -1,3 +1,18 @@
-#carousel {
-    max-height: 400px;
+body {
+    background-color:#9DBBAE;
 }
+h2 {
+    font-size:40px;
+    font-family: 'Abril Fatface', cursive
+}
+h5 {
+    font-family: 'Righteous', cursive;
+    font-size:60px;
+}
+p {
+    font-size:18px;
+}
+
+/* font-family: 'Abril Fatface', cursive;
+font-family: 'Righteous', cursive;
+font-family: 'Megrim', cursive; */
