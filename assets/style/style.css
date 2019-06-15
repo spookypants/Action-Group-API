@@ -1,3 +1,10 @@
+#carousel {
+    max-height: 400px;
+}
+
+#searchBar {
+    align-content: center;
+}
 body {
     background-color:#9DBBAE;
 }
@@ -13,6 +20,3 @@ p {
     font-size:18px;
 }
 
-/* font-family: 'Abril Fatface', cursive;
-font-family: 'Righteous', cursive;
-font-family: 'Megrim', cursive; */
