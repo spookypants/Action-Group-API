@@ -2,8 +2,9 @@
     max-height: 400px;
 }
 
-#searchBar {
+#searchform {
     align-content: center;
+    background-color: rgb(182, 185, 187);
 }
 body {
     background-color:#9DBBAE;
@@ -20,3 +21,25 @@ p {
     font-size:18px;
 }
 
+.form-inline .form-control {
+    width: 20rem;
+}
+
+.container {
+    width: 100%;
+}
+
+.btn {
+    background-color: rgb(182, 185, 187);
+}
+
+.btn-outline-success {
+    color: black;
+    border-color: black;
+}
+
+.btn-outline-success:hover {
+    color: white;
+    background: #769FB6;
+    border-color: white;
+}
