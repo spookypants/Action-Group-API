@@ -50,16 +50,16 @@ var db = firebase.database();
 
 //Google YouTube API
 $.ajax({
-    url: “https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=spoon&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI“,
-    method: “GET”
+    url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=spoon&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI",
+    method: "GET"
 }).then(function (response){
-    console.log(“Response”, response);
+    console.log("Response", response);
 })
 
 
 
 //SeatGeek API
-var queryString = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU2MDQ1NDI2Ni45OA";
+var queryString = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU2MDQ1NDI2Ni45OA&sort=score.desc";
 var resultSet;
 $.ajax({
     url: queryString,

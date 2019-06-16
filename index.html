@@ -6,11 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>event+ || Everything Worth Knowing About Where You're Going</title>
     <!-- CSS BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+      crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" 
+      rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/style/style.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+    <!-- this is the youtube API reference -->
+    <!-- <script src=“https://apis.google.com/js/api.js“></script> -->
 
 </head>
 <body>
@@ -32,8 +44,8 @@
           <div class="col-md-12" id="searchBar">
             <nav class="navbar navbar-light bg-light">
               <form class="form-inline">
-                <input class="form-control mr-sm-8" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+                <input class="form-control mr-sm-8" type="search" placeholder="Event Search" aria-label="Search">
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
               </form>
             </nav>
           </div>
@@ -114,9 +126,6 @@
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script src="assets/javascript/logic.js"></script>
 </body>
 </html>
