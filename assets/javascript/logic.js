@@ -154,6 +154,7 @@ function getSearchResults(queryStr){
             //create an object to add the records to the Firebase DB
             var resultSet = response.events;
             writeRecords(resultSet, "SeatGeek");
+            displayEventCards();
         }else{
             $("#events").append('<p>' + "No matching events found." + '</p>');
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +180,7 @@ function writeRecords(resultSet, source){
             vendorID: resultSet[i].id,
             localTime: resultSet[i].datetime_local,
             utcTime: resultSet[i].datetime_utc,
-            image: resultSet[i].image,
+            image: resultSet[i].performers[0].image,
             popularity: resultSet[i].popularity,
             type: resultSet[i].type,
             lowPrice: resultSet[i].stats.lowest_price,
@@ -205,7 +206,6 @@ function writeRecords(resultSet, source){
         var eventUID = db.ref("events").push(JSON.stringify(recordData)).key;
         recordData.fbId = eventUID
         eventList.push(recordData);
-        $("#events").append('<p>' + recordData.title + '</p>');
     }
     console.log(eventList);
 
@@ -230,3 +230,23 @@ function displayYouTubeVideo() {
     })
 }
 displayYouTubeVideo();
+
+//function to create cards and display event data
+function displayEventCards(){
+    
+    for(var i = 0; i < 5; i++){
+        eventList[i]
+        //create card and image for event cards
+        var card = [$("<div class = 'card' style='width: 18rem' idValue=" +eventList[i].fbId+ ">"),
+                $("<div class ='card-body'>"),
+                $("<p>"+eventList[i].title +"</br>"+eventList[i].venueName + 
+                "</br>" + eventList[i].venueDisplayLocation + "</br>" 
+                + eventList[i].localTime + "</p>")];
+        var image = $("<img class='card-img-top' src=" +eventList[i].image +" alt='Card image cap'>");
+
+       //display event data with information regarding event
+        $("#events").append(card);
+        $("#events").append(image);
+        // $(card).attr("class=", eventList[i].fbId);
+    }
+}   
