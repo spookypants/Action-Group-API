@@ -185,8 +185,8 @@ function writeRecords(resultSet, source){
             type: resultSet[i].type,
             lowPrice: resultSet[i].stats.lowest_price,
             highPrice: resultSet[i].stats.highest_price,
-            venueName: resultSet[i].venue.location.name,
-            venueURL: resultSet[i].venue.location.url,
+            venueName: resultSet[i].venue.name,
+            venueURL: resultSet[i].url,
             venueStreetAddress: resultSet[i].venue.address,
             venueCity: resultSet[i].venue.city,
             venueCountry: resultSet[i].venue.country,
@@ -237,16 +237,17 @@ function displayEventCards(){
     for(var i = 0; i < 5; i++){
         eventList[i]
         //create card and image for event cards
-        var card = [$("<div class = 'card' style='width: 18rem' idValue=" +eventList[i].fbId+ ">"),
-                $("<div class ='card-body'>"),
+        var image = $("<img class='card-img-top' src=" +eventList[i].image +" alt='Card image cap'>");
+        var card = [$("<div class = 'card' style='width: 18rem' idValue=" +eventList[i].fbId+ ">").append
+                (image, $("<div class ='card-body'>"),
                 $("<p>"+eventList[i].title +"</br>"+eventList[i].venueName + 
                 "</br>" + eventList[i].venueDisplayLocation + "</br>" 
-                + eventList[i].localTime + "</p>")];
-        var image = $("<img class='card-img-top' src=" +eventList[i].image +" alt='Card image cap'>");
+                + eventList[i].localTime +"</br>" + "<a href=" +eventList[i].venueURL+">Event URL</a>"+"</p>"))];
+        
 
        //display event data with information regarding event
         $("#events").append(card);
-        $("#events").append(image);
+        $("#card").append(image);
         // $(card).attr("class=", eventList[i].fbId);
     }
 }   
