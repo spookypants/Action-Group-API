@@ -2,6 +2,10 @@
     max-height: 400px;
 }
 
+#row {
+    align-content: center;
+}
+
 #searchform {
     align-content: center;
     background-color: rgb(182, 185, 187);
@@ -21,7 +25,8 @@ p {
     font-size:18px;
 }
 
-.form-inline .form-control {
+.submitBtn {
+    position: right;
     width: 20rem;
 }
 
@@ -43,3 +48,8 @@ p {
     background: #769FB6;
     border-color: white;
 }
+
+.button {
+    float: right;
+}
+
