@@ -1,6 +1,6 @@
-#carousel {
+/* #carousel {
     max-height: 400px;
-}
+} */
 
 #row {
     align-content: center;
@@ -9,6 +9,9 @@
 #searchform {
     align-content: center;
     background-color: rgb(182, 185, 187);
+.jumbotron {
+    background-color:#9DBBAE;
+    height:60px;
 }
 
 #searchBtn {
@@ -37,9 +40,16 @@
 body {
     background-color:#9DBBAE;
 }
+h1{
+    font-family: 'Megrim', cursive;
+    text-align:center;
+}
 h2 {
     font-size:40px;
     font-family: 'Abril Fatface', cursive
+}
+h4 {
+    font-size:40px;
 }
 h5 {
     font-family: 'Righteous', cursive;

@@ -5,31 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>event+</title>
-    <!-- CSS BOOTSTRAP
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <!-- CSS BOOTSTRAP -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-      crossorigin="anonymous"> -->
+      crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" 
       rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/style/style.css">
-    <link rel="stylesheet" href="assets/style/reset.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script> -->
 
-<!-- BOOTSTRAP LINKS -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css" href="assets/style/style.css">
 
     <!-- this is the youtube API reference -->
     <!-- <script src=“https://apis.google.com/js/api.js“></script> -->
@@ -37,38 +33,9 @@
 </head>
 <body>
 
-        <div class="container">
-        <!-- NAV BAR -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                  <h1 class="display-4">e v e n t +</h1>
-                </div>
-              </div>
-            </div>
-        </div>
-            <hr>
-<!-- SEARCH FORM-->
-      <div id="row">
-          <div class="col-md-12" id="searchBar">
-            <nav class="navbar navbar-light bg-light">
-              <form class="form-inline">
-                <input id="artistSearch" class="mr-sm-8" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
-                <input id="venueSearch" class="mr-sm-8" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
-                <input id="locationSearch" class="mr-sm-8" type="search" placeholder="Search by Location" aria-label="Search By Location">
-                <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
-                <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-              </form>
-            </nav>
-          </div>
-      </div>
-      <hr>
 
 <!-- CAROUSEL -->
-<div class="bad-carousel">
-<div class="container" id="carousel">
+<!-- <div class="container" id="carousel">
     <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
@@ -115,31 +82,49 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-</div>
-</div>
+</div> -->
 <hr>
 
-<div class="container">
-        <!-- CARD ZONE -->
-        <div class="row">
-            <div id="events" class="col-sm-6">
-                <h2>EVENT STUFF HERE</h2>
-                <p>Event information will be listed out here, which is very exciting news.</p>
-                <p><span id="eventName"></span></p>
-                <p><span id="eventLocation"></span></p>
-                <p><span id="eventAddress"></span></p>
-                <p><span id="eventTime"></span></p>
-
+<div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./assets/images/stage2.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div>
             </div>
-            <div class="col-sm-6" id="youtube" class="iframe-container">
-                <h2>YOUTUBE STUFF HERE</h2>
-                <p>An embedded YouTube player, which will populate with a relevant YouTube video playlist, will appear here, which is also very exciting news.</p>
-                <!-- THIS IS AN EMBEDDED PLACEHOLDER ONLY FOR VISUAL REFERENCE -->
-                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/FwRFH7MH5N0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="carousel-item">
+              <img src="./assets/images/stage1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
             </div>
+            <div class="carousel-item">
+              <img src="./assets/images/stage3.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-    </div>
-</div>
-<script src="assets/javascript/logic.js"></script>
+      </div>
+
 </body>
 </html>
