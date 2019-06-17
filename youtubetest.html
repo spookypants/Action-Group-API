@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>youtube tests</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+    <!-- <script src=“https://apis.google.com/js/api.js“> </script> -->
+</head>
+<body>
+    <div id = "youtube">
+<!-- videos are dynamically created to this location -->
+    </div>
+    <script>
+        // Your web app's Firebase configuration
+        // const firebaseConfig = {
+        //                 apiKey: "AIzaSyADLELNaDJAo8AO85e16M2dTTPhFmlluUk",
+        //                 authDomain: "eventplus-6436b.firebaseapp.com",
+        //                 databaseURL: "https://eventplus-6436b.firebaseio.com",
+        //                 projectId: "eventplus-6436b",
+        //                 storageBucket: "eventplus-6436b.appspot.com",
+        //                 messagingSenderId: "658113048583",
+        //                 appId: "1:658113048583:web:cf53e50460400b32"
+        //             };
+        //     // Initialize Firebase
+        //     firebase.initializeApp(firebaseConfig);
+        //     // Get a reference to the database service
+        //     var db = firebase.database();
+
+        //Google YouTube API
+        function displayVideo() {
+            var query = "brad%20paisley"
+            var queryUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&type=video&videoEmbeddable=true&q=" + query + "&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI";
+            
+            $.ajax({
+                url: queryUrl,
+                method: "GET"
+            }).then(function (response) {
+                console.log("Response", response);
+                // dynamically create videos to our youtube div
+                for (var i=0; i < response.items.length; i++){
+                    var video = $("<iframe>");
+                    video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
+                    video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId);
+                    $("#youtube").append(video);
+                }
+                
+            })
+        }
+        displayVideo();
+    </script>
+</body>
+</html>

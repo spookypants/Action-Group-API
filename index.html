@@ -6,11 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>event+ || Everything Worth Knowing About Where You're Going</title>
     <!-- CSS BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
-    <link rel="stylesheet" href="assets/style/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+      crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" 
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+    <!-- this is the youtube API reference -->
+    <!-- <script src=“https://apis.google.com/js/api.js“></script> -->
 
 </head>
 <body>
@@ -29,28 +41,17 @@
             <hr>
 <!-- SEARCH FORM-->
       <div id="row">
-          <div class="col-md-12" id="searchForm">
-              <form>
-                  <div class="form-group">
-                    <label for="employee-name-input">Location</label>
-                    <input class="form-control" id="eventLocation" placeholder="Austin, TX" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="role-input">Venue</label>
-                    <input class="form-control" id="eventVenue" placeholder="ACL Moody Theater" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="start-input">Performer</label>
-                    <input class="form-control" id="eventPerformer" placeholder="Willie Nelson" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="rate-input">Date</label>
-                    <input class="form-control" id="eventDate" placeholder="4/20/2020" type="text">
-                  </div>
-                  <div class="button">
-                <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-                  </div>
-                </form>
+          <div class="col-md-12" id="searchBar">
+            <nav class="navbar navbar-light bg-light">
+              <form class="form-inline">
+                <input id="artistSearch" class="mr-sm-8" type="search" placeholder="Search by Artist" aria-label="Search By artist">
+                <input id="venueSearch" class="mr-sm-8" type="search" placeholder="Search by Venue" aria-label="Search By venue">
+                <input id="locationSearch" class="mr-sm-8" type="search" placeholder="Search by Location" aria-label="Search By location">
+                <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
+                <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+              </form>
+            </nav>
           </div>
       </div>
       <hr>
@@ -111,7 +112,7 @@
 <div class="container">
         <!-- CARD ZONE -->
         <div class="row">
-            <div class="col-sm-6" id="events">
+            <div id="events" class="col-sm-6">
                 <h2>EVENT STUFF HERE</h2>
                 <p>Event information will be listed out here, which is very exciting news.</p>
                 <p><span id="eventName"></span></p>
@@ -120,18 +121,15 @@
                 <p><span id="eventTime"></span></p>
 
             </div>
-            <div class="col-sm-6" id="youtube">
+            <div class="col-sm-6" id="youtube" class="iframe-container">
                 <h2>YOUTUBE STUFF HERE</h2>
                 <p>An embedded YouTube player, which will populate with a relevant YouTube video playlist, will appear here, which is also very exciting news.</p>
                 <!-- THIS IS AN EMBEDDED PLACEHOLDER ONLY FOR VISUAL REFERENCE -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/FwRFH7MH5N0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/FwRFH7MH5N0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script src="assets/javascript/logic.js"></script>
 </body>
 </html>
