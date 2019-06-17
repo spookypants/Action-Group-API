@@ -72,6 +72,7 @@ h5 {
 }
 p {
     font-size:18px;
+    margin: 0;
 }
 #youtube {
     text-align:right;
@@ -96,7 +97,11 @@ p {
     width: 100%;
     height: 100%;
 }
+#events {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-.card-image-top{
-    width: 18rem;
+.card-body {
+    padding: 10px;
 }
