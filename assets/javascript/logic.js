@@ -229,7 +229,6 @@ function displayYouTubeVideo() {
         
     })
 }
-displayYouTubeVideo();
 
 //function to create cards and display event data
 function displayEventCards(){
