@@ -1,16 +1,27 @@
-#carousel {
+/* #carousel {
     max-height: 400px;
-}
+} */
 
 #searchBar {
     align-content: center;
 }
+.jumbotron {
+    background-color:#9DBBAE;
+    height:60px;
+}
 body {
     background-color:#9DBBAE;
+}
+h1{
+    font-family: 'Megrim', cursive;
+    text-align:center;
 }
 h2 {
     font-size:40px;
     font-family: 'Abril Fatface', cursive
+}
+h4 {
+    font-size:40px;
 }
 h5 {
     font-family: 'Righteous', cursive;
