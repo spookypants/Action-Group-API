@@ -41,7 +41,7 @@ $("#searchBtn").on("click", function(event){
         $("#events").empty();
         finalSearchQuery = formSearchQuery("seatGeek");
         getSearchResults(finalSearchQuery);
-        displayYouTubeVideo();
+        // displayYouTubeVideo();
 
     }else{
         //don't do anything if the search form is not valid
@@ -210,26 +210,26 @@ function writeRecords(resultSet, source){
     console.log(eventList);
 
 }
-function displayYouTubeVideo() {
-    //var query = "brad%20paisley"
-    var queryUrl = formSearchQuery("youTube");
-    $("#youtube").empty();
-    $.ajax({
-        url: queryUrl,
-        method: "GET"
-    }).then(function (response) {
-        //console.log("Response", response);
-        // dynamically create videos to our youtube div
-        for (var i=0; i < response.items.length; i++){
-            var video = $("<iframe>");
-            video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
-            video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
-            $("#youtube").append(video);
-        }
+// function displayYouTubeVideo() {
+//     //var query = "brad%20paisley"
+//     var queryUrl = formSearchQuery("youTube");
+//     $("#youtube").empty();
+//     $.ajax({
+//         url: queryUrl,
+//         method: "GET"
+//     }).then(function (response) {
+//         //console.log("Response", response);
+//         // dynamically create videos to our youtube div
+//         for (var i=0; i < response.items.length; i++){
+//             var video = $("<iframe>");
+//             video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
+//             video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
+//             $("#youtube").append(video);
+//         }
         
-    })
-}
-displayYouTubeVideo();
+//     })
+// }
+// displayYouTubeVideo();
 
 //function to create cards and display event data
 function displayEventCards(){
@@ -238,11 +238,11 @@ function displayEventCards(){
         eventList[i]
         //create card and image for event cards
         var image = $("<img class='card-img-top' src=" +eventList[i].image +" alt='Card image cap'>");
-        var card = [$("<div class = 'card' style='width: 18rem' idValue=" +eventList[i].fbId+ ">").append
-                (image, $("<div class ='card-body'>"),
+        var card = [$("<div class = 'card eventCard' style='width: 17rem; margin: 10px' idValue=" +eventList[i].fbId+ ">").append
+                (image, $("<div class ='card-body'>").append(
                 $("<p>"+eventList[i].title +"</br>"+eventList[i].venueName + 
                 "</br>" + eventList[i].venueDisplayLocation + "</br>" 
-                + eventList[i].localTime +"</br>" + "<a href=" +eventList[i].venueURL+">Event URL</a>"+"</p>"))];
+                + eventList[i].localTime +"</br>" + "<a href=" +eventList[i].venueURL+">Event URL</a>"+"</p>")))];
         
 
        //display event data with information regarding event
