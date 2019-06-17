@@ -10,6 +10,30 @@
     align-content: center;
     background-color: rgb(182, 185, 187);
 }
+
+#searchBtn {
+    background-color: #769FB6;
+}
+
+.btn {
+    background-color: rgb(182, 185, 187);
+}
+
+.button {
+    float: right;
+}
+
+.btn-outline-success {
+    color: black;
+    border-color: black;
+}
+
+.btn-outline-success:hover {
+    color: white;
+    background: #769FB6;
+    border-color: white;
+}
+
 body {
     background-color:#9DBBAE;
 }
