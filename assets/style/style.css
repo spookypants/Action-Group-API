@@ -5,9 +5,14 @@
 #searchBar {
     align-content: center;
 }
+.navbar-light {
+    background-color:#9DBBAE;
+}
 .jumbotron {
     background-color:#9DBBAE;
     height:60px;
+    margin-top:-45px;
+    margin-bottom:-5px;
 }
 body {
     background-color:#9DBBAE;
