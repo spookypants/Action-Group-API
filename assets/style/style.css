@@ -4,16 +4,23 @@
 
 #row {
     align-content: center;
-    /* background-color: rgb(182, 185, 187); */
 }
+
 .navbar-light {
     background-color:#9DBBAE;
 }
 
-#searchform {
-    align-content: center;
-    /* background-color: rgb(182, 185, 187); */
+.navbar {
+    justify-content:center;
 }
+
+.form-inline {
+    width:100%;
+}
+
+/* #searchform {
+    align-content: center;
+} */
 
 .jumbotron {
     background-color:#9DBBAE;
@@ -31,7 +38,7 @@
 }
 
 .button {
-    float: right;
+    float: center;
 }
 
 .btn-outline-success {
