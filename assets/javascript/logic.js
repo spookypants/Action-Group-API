@@ -231,10 +231,11 @@ function writeRecords(resultSet, source){
 // }
 // displayYouTubeVideo();
 
+
 //function to create cards and display event data
 function displayEventCards(){
     
-    for(var i = 0; i < 5; i++){
+    for(var i = 0; i < 4; i++){
         eventList[i]
         //create card and image for event cards
         var image = $("<img class='card-img-top' src=" +eventList[i].image +" alt='Card image cap'>");
