@@ -2,19 +2,47 @@
     max-height: 400px;
 } */
 
-#searchBar {
+#row {
     align-content: center;
     background-color: rgb(182, 185, 187);
 }
 .navbar-light {
     background-color:#9DBBAE;
 }
+
+#searchform {
+    align-content: center;
+    background-color: rgb(182, 185, 187);
 .jumbotron {
     background-color:#9DBBAE;
     height:60px;
     margin-top:-45px;
     margin-bottom:-5px;
 }
+
+#searchBtn {
+    background-color: #769FB6;
+}
+
+.btn {
+    background-color: rgb(182, 185, 187);
+}
+
+.button {
+    float: right;
+}
+
+.btn-outline-success {
+    color: black;
+    border-color: black;
+}
+
+.btn-outline-success:hover {
+    color: white;
+    background: #769FB6;
+    border-color: white;
+}
+
 body {
     background-color:#9DBBAE;
 }
