@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event+</title>
+    <!-- CSS BOOTSTRAP
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+      crossorigin="anonymous"> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" 
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+    <link rel="stylesheet" href="assets/style/reset.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+<!-- BOOTSTRAP LINKS -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="assets/style/style.css">
+
+    <!-- this is the youtube API reference -->
+    <!-- <script src=“https://apis.google.com/js/api.js“></script> -->
+
+</head>
+<body>
+
+    <div class="container">
+        <!-- NAV BAR -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">e v e n t +</h1>
+                </div>
+              </div>
+            </div>
+        </div>
+            <hr>
+<!-- SEARCH RESULTS-->
+      <div class="row">
+          <div class="col-md-4" id="searchPic">
+            <img class="ratio_pic" src="./assets/images/willie nelson.jpg" alt="event picture here">
+          </div>
+          <div class="v1"></div>
+          <div class="col-md-8" id="searchResults">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis vitae accusantium minima libero placeat. Officiis, numquam sunt eum rerum eaque sed explicabo dolor doloremque maiores expedita optio. Obcaecati, at repellendus.</p>
+          <br>
+          <tr>Artist:</tr> <tr>Willie Nelson</tr>
+          <br>
+          <tr>Venue:</tr> <tr>Austin City Limits</tr>
+          <br>
+          <tr>Time:</tr> <tr>April 20th 2020</tr><br>
+                        <tr>Doors open at 4:20!</tr>
+          <br>
+          </div>
+      </div>
+      <hr>
+
+<!-- WEATHER RESULTS -->
+      <div class="row">
+      <div class="col-md-12" class="weather"></div>
+      </div>
+        <!-- CARD ZONE -->
+        <div class="row">
+            <div id="events" class="col-sm-8">
+                <!-- <h2>EVENT STUFF HERE</h2>
+                <p>Event information will be listed out here, which is very exciting news.</p> -->
+                <p><span id="eventName"></span></p>
+                <p><span id="eventLocation"></span></p>
+                <p><span id="eventAddress"></span></p>
+                <p><span id="eventTime"></span></p>
+
+            </div>
+            <div class="col-sm-4" id="youtube" class="iframe-container">
+                <!-- <h2>YOUTUBE STUFF HERE</h2>
+                <p>An embedded YouTube player, which will populate with a relevant YouTube video playlist, will appear here, which is also very exciting news.</p> -->
+                <!-- THIS IS AN EMBEDDED PLACEHOLDER ONLY FOR VISUAL REFERENCE -->
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/FwRFH7MH5N0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="assets/javascript/logic.js"></script>
+</body>
+</html>
