@@ -23,10 +23,12 @@
 } */
 
 .jumbotron {
-    background-color:#9DBBAE;
+    background-color:#769fb6;
     height:60px;
-    margin-top:-45px;
-    margin-bottom:-5px;
+    color:white;
+    margin-top:-70px;
+    padding-bottom:auto;
+    /* margin-bottom:-1px; */
 }
 
 #searchBtn {
