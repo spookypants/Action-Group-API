@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="col-sm-3 searchWrapper input-group">
-                    <input id="zipSearch" type="number" min="5" max="5" class="mr-sm-8 search form-control" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                    <input id="zipSearch" type="number" maxlength="5" class="mr-sm-8 search form-control" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radius</button>
                       <div class="dropdown-menu">
@@ -94,7 +94,7 @@
                 <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
                 <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
                 <div class="col-sm-2">
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" data-toggle="modal" data-target="#userPrompt" type="submit">Search</button>
                 </div>
               </form>
               <!-- BOTTOM ROW SEARCH BOXES -->
@@ -110,6 +110,26 @@
             </nav>
           </div>
       </div>
+      <!-- Modal -->
+<div class="modal fade" id="userPrompt" tabindex="-1" role="dialog" aria-labelledby="userPromptLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Help us help you!</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Looks like you forgot to enter some search parameters. To use event+, please search by an artist name, venue, location, or time!</br></br>
+        YOU SHOULD ONLY SEE THIS IF YOU HIT SEARCH WITHOUT PUTTING ANYTHING IN THE SEARCH!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  </div>
       <hr>
 
 <!-- CAROUSEL -->
