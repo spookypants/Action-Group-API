@@ -54,22 +54,46 @@
       <div id="row">
           <div class="col-md-12" id="searchBar">
             <nav class="navbar navbar-light">
+              <!-- TOP ROW SEARCH BOXES -->
               <div class="form-inline">
                 <div class="col-sm-3 searchWrapper">
-                <input id="artistSearch" class="mr-sm-8 search" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
+                  <input id="artistSearch" class="mr-sm-8 search" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
                 </div>
                 <div class="col-sm-3 searchWrapper">
-                <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
+                  <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
                 </div>
-                <div class="col-sm-3 searchWrapper">
+                <div class="col-sm-2 searchWrapper">
+                  <input id="zipSearch" class="mr-sm-8 search" type="search" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                </div>
+                <!-- ZIP CODE RADIUS DROP DOWN -->
+                <div class="dropdown col-sm-2 text-center">
+                  <button id="radiusBtn" class="btn btn-outline-success btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Radius
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">5 mi</a></li>
+                    <li><a href="#">10 mi</a></li>
+                    <li><a href="#">15 mi</a></li>
+                  </ul>
+                </div>
+                <!-- <div class="col-sm-3 searchWrapper">
                 <input id="locationSearch" class="mr-sm-8 search" type="search" placeholder="Search by Location" aria-label="Search By Location">
-                </div>
+                </div> -->
                 <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
                 <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
                 </div>
               </form>
+              <!-- BOTTOM ROW SEARCH BOXES -->
+              <div class="form-inline">
+                <div class="col-sm-3 searchWrapper"></div>
+                <div class="col-sm-3 searchWrapper">
+                  <input id="startDateSearch" class="mr-sm-8 search" type="search" placeholder="Start Date (MM/DD/YYYY)" aria-label="Event Start Date">
+                </div>
+                <div class="col-sm-3 searchWrapper">
+                  <input id="endDateSearch" class="mr-sm-8 search" type="search" placeholder="End Date (MM/DD/YYYY)" aria-label="Event End Date">
+                </div>  
+              </div>
             </nav>
           </div>
       </div>
