@@ -24,7 +24,8 @@ var finalSearchQuery = ""
 var seatGeekQuery = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU2MDQ1NDI2Ni45OA&sort=score.desc";
 var youTubeQuery = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&order=viewCount&type=video&videoEmbeddable=true&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI&q=";
 var addPerformers = "";
-var addLocation = "";
+var addLocationZip = "";
+var addRadius = "25mi";
 var addVenue = "";
 var addStartDate = "";
 var addEndDate = "";
@@ -57,35 +58,38 @@ function validateSearchForm() {
     var venuePopulated = false;
     var locationPopulated = false;
     var validSearch = true;
-    //if an artist is populated, the search valid
-    if ($("#artistSearch").val() != "") {
+    //if an artist is populated, the search is valid
+    if($("#artistSearch").val() != ""){
         artistPopulated = true;
         validSearch = true;
         addPerformers = $("#artistSearch").val();
         console.log("artist: " + $("#artistSearch").val());
     }
-    if ($("#venueSearch").val() != "") {
-        locationPopulated = true;
+    //if a venue is populated, the search is valid
+    if($("#venueSearch").val() != ""){
+        venuePopulated = true;
         validSearch = true;
+        addVenue = $("#venueSearch").val();
+        console.log("venue: " + $("#venueSearch").val());
+    }
+    if($("#zipSearch").val() != ""){
         ////////////////////////////////////////////////////////////////////////////
         //the Seek Geek API accepts zips for location searches
         //parse the zip to an int to see if its a valid US zip
         //if not then display message///////////////////////////////////////////////////////////////////////////
-
-        addLocation = $("#venueSearch").val();
-        console.log("venue: " + $("#venueSearch").val());
-    }
-    if ($("#locationSearch").val() != "") {
-        artistPopulated = true;
+        locationPopulated = true;
         validSearch = true;
-        addPerformers = $("#locationSearch").val();
-        console.log("location: " + $("#locationSearch").val());
+        addLocationZip = $("#zipSearch").val();
+        //addRadius = $("#radius").val();
+        console.log("location: " + $("#zipSearch").val());
     }
+
+    //If a start date is added but not the end date, Default end date to be the same as start date.//////////////////////
 
     //if the search is accepted, clear the input boxes for the next query
     if (validSearch) {
         $("#venueSearch").val("");
-        $("#locationSearch").val("");
+        $("#zipSearch").val("");
         $("#artistSearch").val("");
         //$("#startDateSearch").val("");
         //$("#endDateSearch").val("");
@@ -96,8 +100,8 @@ function validateSearchForm() {
     return validSearch;
 };
 
-function formSearchQuery(apiToQuery) {
-    //debugger;
+function formSearchQuery (apiToQuery){
+    debugger;
     var returnQuery = ""
 
     //add the initial domain and endpoints
@@ -106,29 +110,38 @@ function formSearchQuery(apiToQuery) {
         //add the rest of the search terms
         if (addPerformers != "") {
             returnQuery += "&q=" + addPerformers.replace(/\s+/g, "+");
-            //format the performers list as per seatGeek API rules (replace space with dash)
-            returnQuery += "&performers.slug=" + addPerformers.replace(/\s+/g, "-");
         }
-        if (addLocation != "") {
-            returnQuery += "&" + addLocation;
+        if(addLocationZip != ""){
+            returnQuery += "&geoip=" + addLocationZip + "&range=" + addRadius;
         }
-        if (addVenue != "") {
-            returnQuery += "&" + addVenue;
+        if(addVenue != ""){
+            if(addPerformers != ""){
+                returnQuery += "&" + addVenue;
+            }else{
+                returnQuery += "&q=" + addVenue;
+            }
         }
+    
+        if($("#startDateSearch").val() != ""){
+            debugger;
+            //format the date into the format reequired by the API (YYYY-MM-DD)
+            var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
+            var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
 
-        if (addStartDate != "" && addEndDate != "") {
             //add dates filter based on search term for each API
+            addStartDate = startDate.format("YYYY-MM-DD");
+            //if end date is populated use it else default it to the start date
+            if($("#endDateSearch").val != ""){
+                addEndDate = endDate.format("YYYY-MM-DD");
+            }else{
+                addEndDate = startDate.format("YYYY-MM-DD");
+            }
+            returnQuery += "&datetime_utc.gte=" + addStartDate + "&datetime_utc.lte=" + addEndDate;
         }
     } else if (apiToQuery === "youTube") {
         returnQuery += youTubeQuery;
         if (addPerformers != "") {
             returnQuery += addPerformers;
-        } else {
-            //this is for the initial load
-            returnQuery += "UT Longhorns";
-        }
-        if (addLocation != "") {
-            returnQuery += "&" + addLocation;
         }
         if (addVenue != "") {
             returnQuery += "&" + addVenue;
@@ -194,7 +207,7 @@ function writeRecords(resultSet, source) {
             venueCapacity: resultSet[i].venue.capacity
         }
 
-        if (resultSet[i].performers.length < 4) {
+        if (resultSet[i].performers.length < 4){
             recordData.performers = resultSet[i].performers
         }
         else {
@@ -250,9 +263,14 @@ $(document).on("click", ".card", function () {
     })
 });
 //function to create cards and display event data
-function displayEventCards() {
-
-    for (var i = 0; i < 4; i++) {
+function displayEventCards(){
+    var loops = 0
+    if(eventList.length > 4){
+        loops = 4;
+    }else{
+        loops = eventList.length;
+    }
+    for(var i = 0; i < loops; i++){
         eventList[i]
         //create card and image for event cards
         var image = $("<img class='card-img-top' src=" + eventList[i].image + " alt='Card image cap'>");
