@@ -31,6 +31,18 @@
 
 #searchBtn {
     background-color: #769FB6;
+    width:100%;
+}
+
+.search {
+    width:100%;
+    padding: 0 0 0 10px;
+    background-color: #E2DBBE;
+}
+
+.searchWrapper {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .btn {
