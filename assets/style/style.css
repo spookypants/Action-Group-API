@@ -23,10 +23,12 @@
 } */
 
 .jumbotron {
-    background-color:#9DBBAE;
+    background-color:#769fb6;
     height:60px;
-    margin-top:-45px;
-    margin-bottom:-5px;
+    color:white;
+    margin-top:-70px;
+    padding-bottom:auto;
+    /* margin-bottom:-1px; */
 }
 
 #searchBtn {
@@ -34,10 +36,15 @@
     width:100%;
 }
 
+#radiusBtn {
+    background-color: #769FB6;
+    width:60%;
+}
+
 .search {
     width:100%;
     padding: 0 0 0 10px;
-    background-color: #E2DBBE;
+    /* background-color: #E2DBBE; */
 }
 
 .searchWrapper {
