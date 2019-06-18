@@ -125,6 +125,8 @@ p {
     padding: 10px;
 }
 
+/* Event Details Page Formatting */
+
 #searchPic {
     position: relative;
     display: block;
@@ -135,11 +137,16 @@ img {
     width: 300px;
 }
 
-.v1 {
+#searchResults {
+    background-color: rgb(235, 232, 224);
+    padding-top: 50px;
+}
+
+/* .v1 {
     border-left: 1px solid #E2DBBE;
     height: 200px;
     position: absolute;
     left: 36%;
     margin-left: -3px;
     top: 150px;
-  }
+  } */
