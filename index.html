@@ -62,11 +62,24 @@
                 <div class="col-sm-3 searchWrapper">
                   <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
                 </div>
-                <div class="col-sm-2 searchWrapper">
+
+                <div class="col-sm-3 searchWrapper input-group">
+                    <input id="zipSearch" type="search" class="mr-sm-8 search form-control" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radius</button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">5 mi</a>
+                        <a class="dropdown-item" href="#">10 mi</a>
+                        <a class="dropdown-item" href="#">15 mi</a>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <div class="col-sm-2 searchWrapper">
                   <input id="zipSearch" class="mr-sm-8 search" type="search" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
                 </div>
                 <!-- ZIP CODE RADIUS DROP DOWN -->
-                <div class="dropdown col-sm-2 text-center">
+                <!-- <div class="dropdown col-sm-2 text-center">
                   <button id="radiusBtn" class="btn btn-outline-success btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Radius
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
@@ -74,7 +87,7 @@
                     <li><a href="#">10 mi</a></li>
                     <li><a href="#">15 mi</a></li>
                   </ul>
-                </div>
+                </div> -->
                 <!-- <div class="col-sm-3 searchWrapper">
                 <input id="locationSearch" class="mr-sm-8 search" type="search" placeholder="Search by Location" aria-label="Search By Location">
                 </div> -->
