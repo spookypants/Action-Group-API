@@ -4,16 +4,23 @@
 
 #row {
     align-content: center;
-    /* background-color: rgb(182, 185, 187); */
 }
+
 .navbar-light {
     background-color:#9DBBAE;
 }
 
-#searchform {
-    align-content: center;
-    /* background-color: rgb(182, 185, 187); */
+.navbar {
+    justify-content:center;
 }
+
+.form-inline {
+    width:100%;
+}
+
+/* #searchform {
+    align-content: center;
+} */
 
 .jumbotron {
     background-color:#9DBBAE;
@@ -24,6 +31,18 @@
 
 #searchBtn {
     background-color: #769FB6;
+    width:100%;
+}
+
+.search {
+    width:100%;
+    padding: 0 0 0 10px;
+    background-color: #E2DBBE;
+}
+
+.searchWrapper {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .btn {
@@ -31,7 +50,7 @@
 }
 
 .button {
-    float: right;
+    float: center;
 }
 
 .btn-outline-success {
@@ -65,6 +84,7 @@ h5 {
 }
 p {
     font-size:18px;
+    margin: 0;
 }
 #youtube {
     text-align:right;
@@ -80,12 +100,39 @@ p {
     width: 100%;
     padding-bottom: 56.25%; 
     height: 0;
-  }
-  .iframe-container iframe{
+}
+
+.iframe-container iframe{
     position: absolute;
     top:0;
     left: 0;
     width: 100%;
     height: 100%;
-  }
+}
+#events {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.card-body {
+    padding: 10px;
+}
+
+#searchPic {
+    position: relative;
+    display: block;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+.v1 {
+    border-left: 1px solid #E2DBBE;
+    height: 200px;
+    position: absolute;
+    left: 36%;
+    margin-left: -3px;
+    top: 150px;
+  }
