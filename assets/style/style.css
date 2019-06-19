@@ -7,7 +7,7 @@
 }
 
 .navbar-light {
-    background-color:#9DBBAE;
+    background-color:#e1f2fe;
 }
 
 .navbar-dark {
@@ -35,6 +35,10 @@
     padding-bottom:auto;
     margin-bottom:-1px;
 } */
+
+.bad-carousel {
+    width:100%;
+}
 
 #searchBtn {
     background-color: #769FB6;
@@ -82,7 +86,7 @@
 }
 
 body {
-    background-color:#9DBBAE;
+    background-color:#e1f2fe;
 }
 h1{
     font-family: 'Megrim', cursive;
@@ -102,11 +106,14 @@ h5 {
 h6 {
     font-family: 'Abril Fatface', cursive;
     font-size: 20px;
-    color:white;
+    color:#373e40;
 }
 p {
     font-size:18px;
     margin: 0;
+}
+.radio-buttons {
+    font-size:15px;
 }
 #youtube {
     text-align:right;

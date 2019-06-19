@@ -55,22 +55,22 @@
 
 <!-- SEARCH FORM-->
       <div id="row">
-          <div class="col-md-12" id="searchBar" data-toggle="tooltip" data-placement="bottom" title="Select one search parameter and enter your query!">
+          <div class="col-md-12" id="searchBar" data-toggle="tooltip" data-placement="bottom" title="Select one search parameter and enter your query">
             <nav class="navbar navbar-light">
               <!-- TOP ROW SEARCH BOXES -->
-              <div class="form-inline">
+              <!-- <div class="form-inline">
                 <div class="col-sm-4 searchWrapper">
-                  <label class="radio-inline">
-                  <input type="radio" name="optradio" checked>
-                  <input id="artistSearch" class="mr-sm-8 search" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
+                  <label class="radio-inline"> -->
+                  <!-- <input type="radio" name="optradio" data-name="radio-artist" checked> -->
+                  <!-- <input id="artistSearch" class="mr-sm-8 search radio-text" data-name="artist" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
                   </label>
                 </div>
                 <div class="col-sm-3 searchWrapper">
-                  <label class="radio-inline">
-                  <input type="radio" name="optradio">                  
-                  <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
+                  <label class="radio-inline"> -->
+                  <!-- <input type="radio" name="optradio" data-name="radio-venue">                   -->
+                  <!-- <input id="venueSearch" class="mr-sm-8 search radio-text" data-name="venue" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
                   </label>
-                </div>
+                </div> -->
 
                 <!-- UGLY ZIP CODE SEARCH, TO DELETE ON CONFIRMATION -->
                 <!-- <div class="col-sm-3 searchWrapper input-group">
@@ -87,34 +87,45 @@
                     </div>
                   </div> -->
 
-                <div class="col-sm-3 searchWrapper">
-                  <label class="radio-inline">
-                  <input type="radio" name="optradio">
-                  <input id="zipSearch" class="mr-sm-8 search" type="search" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                <!-- <div class="col-sm-3 searchWrapper">
+                  <label class="radio-inline"> -->
+                  <!-- <input type="radio" name="optradio" data-name="radio-zip"> -->
+                  <!-- <input id="zipSearch" class="mr-sm-8 search radio-text" data-name="zip" type="number" maxlength="5" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
                   </label>
-                </div>
+                </div> -->
                 <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
                 <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
+
+                <!-- <div class="col-sm-6 input-group searchWrapper">
+                  <input id="search" class="mr-sm-8 search" type="search" placeholder="Enter search here..." aria-label="Primary search bar"> -->
+                  <div class="col-sm-6 input-group searchWrapper">
+                      <input type="search" class="form-control search" aria-label="Search input with dropdown button">
+                      <div class="input-group-append">
+                      <button class="btn btn-outline-success dropdown-toggle" id="searchBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Performer</a>
+                        <a class="dropdown-item" href="#">Venue</a>
+                        <a class="dropdown-item" href="#">Zip Code</a>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-sm-2 searchWrapper">
+                  <input id="startDateSearch" class="mr-sm-8 search" type="date" placeholder="Start Date (MM/DD/YYYY)" aria-label="Event Start Date">
+                  <small id="dateHelp" class="form-text text-muted">Start Date</small>
+                </div>
+                <div class="col-sm-2 searchWrapper">
+                  <input id="endDateSearch" class="mr-sm-8 search" type="date" placeholder="End Date (MM/DD/YYYY)" aria-label="Event End Date">
+                  <small id="dateHelp" class="form-text text-muted">End Date</small>
+                </div>  
                 <div class="col-sm-2">
                 <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
                 </div>
               </form>
-              <!-- BOTTOM ROW SEARCH BOXES -->
-              <div class="form-inline">
-                <div class="col-sm-3 searchWrapper"></div>
-                <div class="col-sm-1"><h6>Start Date:</h6></div>
-                <div class="col-sm-2 searchWrapper">
-                  <input id="startDateSearch" class="mr-sm-8 search" type="date" placeholder="Start Date (MM/DD/YYYY)" aria-label="Event Start Date">
-                </div>
-                <div class="col-sm-1"><h6>End Date:</h6></div>
-                <div class="col-sm-2 searchWrapper">
-                  <input id="endDateSearch" class="mr-sm-8 search" type="date" placeholder="End Date (MM/DD/YYYY)" aria-label="Event End Date">
-                </div>  
+
               </div>
             </nav>
           </div>
       </div>
-      <hr>
 
 <!-- CAROUSEL -->
 <div class="bad-carousel">

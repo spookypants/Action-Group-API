@@ -50,6 +50,22 @@ $("#searchBtn").on("click", function (event) {
     }
 });
 
+// RADIO BUTTON LOGIC by GABE
+$(".radio-text").on("input", function(event) {
+    debugger;
+    console.log("The input field says " + $(this).val());
+    if($(".radio-text").val() === ""){
+        $(".radio-text").prop("disabled", true);
+    
+    }
+    // use jquery to figure out what 'this' data-name attr is
+
+    // find the 'radio-' + whatever data-name attr of the radio button
+
+    // check that button
+    // $("selector").attr("checked", true);
+})
+
 
 //this function validates the search form and displays the appropriate messaage to the user
 function validateSearchForm() {
