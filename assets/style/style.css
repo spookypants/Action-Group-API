@@ -2,12 +2,19 @@
     max-height: 400px;
 } */
 
-#row {
-    align-content: center;
+.row {
+    display: inline;
 }
 
 .navbar-light {
-    background-color:#9DBBAE;
+
+    background-color:#e1f2fe;
+}
+
+.navbar-dark {
+    background-color:#769fb6;
+    color:white;
+
 }
 
 .navbar {
@@ -18,17 +25,26 @@
     width:100%;
 }
 
+#event-title {
+    text-align: center;
+}
+
 /* #searchform {
     align-content: center;
 } */
 
-.jumbotron {
+/* .jumbotron {
     background-color:#769fb6;
     height:60px;
     color:white;
     margin-top:-70px;
     padding-bottom:auto;
-    /* margin-bottom:-1px; */
+    margin-bottom:-1px;
+} */
+
+.bad-carousel {
+    width:100%;
+
 }
 
 #searchBtn {
@@ -77,7 +93,7 @@
 }
 
 body {
-    background-color:#9DBBAE;
+    background-color:#e1f2fe;
 }
 h1{
     font-family: 'Megrim', cursive;
@@ -88,15 +104,23 @@ h2 {
     font-family: 'Abril Fatface', cursive
 }
 h4 {
-    font-size:40px;
+    font-size:35px;
 }
 h5 {
-    font-family: 'Righteous', cursive;
+    font-family: 'Megrim', cursive;
     font-size:60px;
+}
+h6 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 20px;
+    color:#373e40;
 }
 p {
     font-size:18px;
     margin: 0;
+}
+.radio-buttons {
+    font-size:15px;
 }
 #youtube {
     text-align:right;
@@ -130,21 +154,8 @@ p {
     padding: 10px;
 }
 
-/* Event Details Page Formatting */
-
-#searchPic {
-    position: relative;
-    display: block;
-}
-
-img {
-    height: 300px;
-    width: 300px;
-}
-
-#searchResults {
-    background-color: rgb(235, 232, 224);
-    padding-top: 50px;
+.eventDetails {
+    font-size:14px;
 }
 
 /* .v1 {
@@ -167,3 +178,14 @@ stroke: #000;
 #yaxis text {
 font-size: 12px;
 }
+  /* modal style formatting  */
+  .modal-title{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 24px;
+  }
+  .modal-body{
+    font-family: 'Righteous', cursive;
+    font-size:20px;
+  }
+  
+ 
