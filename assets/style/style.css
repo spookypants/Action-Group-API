@@ -10,6 +10,11 @@
     background-color:#9DBBAE;
 }
 
+.navbar-dark {
+    background-color:#769fb6;
+    color:white;
+}
+
 .navbar {
     justify-content:center;
 }
@@ -22,14 +27,14 @@
     align-content: center;
 } */
 
-.jumbotron {
+/* .jumbotron {
     background-color:#769fb6;
     height:60px;
     color:white;
     margin-top:-70px;
     padding-bottom:auto;
-    /* margin-bottom:-1px; */
-}
+    margin-bottom:-1px;
+} */
 
 #searchBtn {
     background-color: #769FB6;
@@ -93,6 +98,11 @@ h4 {
 h5 {
     font-family: 'Righteous', cursive;
     font-size:60px;
+}
+h6 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 20px;
+    color:white;
 }
 p {
     font-size:18px;
