@@ -154,6 +154,10 @@ p {
     padding: 10px;
 }
 
+<<<<<<< HEAD
+.eventDetails {
+    font-size:14px;
+=======
 /* Event Details Page Formatting */
 
 
@@ -184,6 +188,7 @@ img {
     /* float: left !important; */
 
 
+>>>>>>> master
 }
 
 /* .v1 {
@@ -194,3 +199,15 @@ img {
     margin-left: -3px;
     top: 150px;
   } */
+
+  /* modal style formatting  */
+  .modal-title{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 24px;
+  }
+  .modal-body{
+    font-family: 'Righteous', cursive;
+    font-size:20px;
+  }
+  
+ 

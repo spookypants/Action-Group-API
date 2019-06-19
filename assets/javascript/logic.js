@@ -42,7 +42,7 @@ $("#searchBtn").on("click", function (event) {
         $("#events").empty();
         finalSearchQuery = formSearchQuery("seatGeek");
         getSearchResults(finalSearchQuery);
-        // displayYouTubeVideo();
+        displayYouTubeVideo();
 
     } else {
         //don't do anything if the search form is not valid
@@ -75,20 +75,20 @@ function validateSearchForm() {
     var locationPopulated = false;
     var validSearch = true;
     //if an artist is populated, the search is valid
-    if($("#artistSearch").val() != ""){
+    if ($("#artistSearch").val() != "") {
         artistPopulated = true;
         validSearch = true;
         addPerformers = $("#artistSearch").val();
         console.log("artist: " + $("#artistSearch").val());
     }
     //if a venue is populated, the search is valid
-    if($("#venueSearch").val() != ""){
+    if ($("#venueSearch").val() != "") {
         venuePopulated = true;
         validSearch = true;
         addVenue = $("#venueSearch").val();
         console.log("venue: " + $("#venueSearch").val());
     }
-    if($("#zipSearch").val() != ""){
+    if ($("#zipSearch").val() != "") {
         ////////////////////////////////////////////////////////////////////////////
         //the Seek Geek API accepts zips for location searches
         //parse the zip to an int to see if its a valid US zip
@@ -126,8 +126,13 @@ function validateSearchForm() {
     return validSearch;
 };
 
+<<<<<<< HEAD
+function formSearchQuery(apiToQuery) {
+    debugger;
+=======
 function formSearchQuery (apiToQuery){
     // debugger;
+>>>>>>> master
     var returnQuery = ""
 
     //add the initial domain and endpoints
@@ -137,6 +142,20 @@ function formSearchQuery (apiToQuery){
         if (addPerformers != "") {
             returnQuery += "&q=" + addPerformers.replace(/\s+/g, "+");
         }
+<<<<<<< HEAD
+        if (addLocationZip != "") {
+            returnQuery += "&geoip=" + addLocationZip + "&range=" + addRadius;
+        }
+        if (addVenue != "") {
+            if (addPerformers != "") {
+                returnQuery += "&" + addVenue;
+            } else {
+                returnQuery += "&q=" + addVenue;
+            }
+        }
+
+        if ($("#startDateSearch").val() != "") {
+=======
         if(addVenue != ""){
             if(addPerformers != ""){
                 returnQuery += "+" + addVenue;
@@ -149,6 +168,7 @@ function formSearchQuery (apiToQuery){
         }
     
         if($("#startDateSearch").val() != ""){
+>>>>>>> master
             debugger;
             // //format the date into the format reequired by the API (YYYY-MM-DD)
             // var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
@@ -157,10 +177,17 @@ function formSearchQuery (apiToQuery){
             //add dates filter based on search term for each API
             addStartDate = $("#startDateSearch").val();
             //if end date is populated use it else default it to the start date
+<<<<<<< HEAD
+            if ($("#endDateSearch").val != "") {
+                addEndDate = endDate.format("YYYY-MM-DD");
+            } else {
+                addEndDate = startDate.format("YYYY-MM-DD");
+=======
             if($("#endDateSearch").val() != ""){
                 addEndDate = $("#endDateSearch").val();
             }else{
                 addEndDate = $("#startDateSearch").val();
+>>>>>>> master
             }
             returnQuery += "&datetime_utc.gte=" + addStartDate + "&datetime_utc.lte=" + addEndDate;
         }
@@ -233,14 +260,13 @@ function writeRecords(resultSet, source) {
             venueCapacity: resultSet[i].venue.capacity
         }
 
-        if (resultSet[i].performers.length < 4){
+        if (resultSet[i].performers.length < 4) {
             recordData.performers = resultSet[i].performers
         }
         else {
             recordData.performers = resultSet[i].performers.slice(0, 3);
         }
         //commit the new row to the DB
-        //debugger;
         //console.log(recordData);
         var eventUID = db.ref("events").push(JSON.stringify(recordData)).key;
         recordData.fbId = eventUID;
@@ -249,72 +275,69 @@ function writeRecords(resultSet, source) {
     console.log(eventList);
 
 }
-// function displayYouTubeVideo() {
-//     //var query = "brad%20paisley"
-//     var queryUrl = formSearchQuery("youTube");
-//     $("#youtube").empty();
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET"
-//     }).then(function (response) {
-//         //console.log("Response", response);
-//         // dynamically create videos to our youtube div
-//         for (var i=0; i < response.items.length; i++){
-//             var video = $("<iframe>");
-//             video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
-//             video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
-//             $("#youtube").append(video);
-//         }
-
-//     })
-// }
-// displayYouTubeVideo();
-
-//function to call OpenWeatherMap API for event
-$(document).on("click", ".card", function () {
-    // console.log("clicked");
-    // debugger;
-    var weatherLoc = $(this).attr("id");
-    console.log(weatherLoc);
-    var weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + weatherLoc + "&units=imperial&APPID=cad8f1c5857468acbe6f6a9645983b49";
-    //empty current weather display location//
+function displayYouTubeVideo() {
+    //var query = "brad%20paisley"
+    var queryUrl = formSearchQuery("youTube");
+    $("#youtube").empty();
     $.ajax({
-        url: weatherURL,
-        method: "GET",
+        url: queryUrl,
+        method: "GET"
     }).then(function (response) {
-        debugger;
-        console.log("weather " + response.main);
+        //console.log("Response", response);
+        // dynamically create videos to our youtube div
+        for (var i = 0; i < response.items.length; i++) {
+            var video = $("<iframe>");
+            video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
+            video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
+            $("#youtube").append(video);
+        }
 
-        //weather icon url is: http://openweathermap.org/img/w/10d.png - replace 10d.png with the weather icon from the array
     })
+<<<<<<< HEAD
+}
+
+=======
     window.open("details.html", "_blank");
 });
+>>>>>>> master
 //function to create cards and display event data
-function displayEventCards(){
+function displayEventCards() {
     var loops = 0
-    if(eventList.length > 4){
+    if (eventList.length > 4) {
         loops = 4;
-    }else{
+    } else {
         loops = eventList.length;
     }
-    for(var i = 0; i < loops; i++){
-        eventList[i]
+    for (var i = 0; i < loops; i++) {
+        eventList[i];
         //create card and image for event cards
         var image = $("<img class='card-img-top' src=" + eventList[i].image + " alt='Card image cap'>");
         var cityState = eventList[i].venueDisplayLocation.split(", ");
         console.log(cityState[0]);
         var city = eventList[i].venueCity.replace(" ", "+");
-        var card = [$("<div class = 'card eventCard' style='width: 17rem; margin: 10px' idValue=" + eventList[i].fbId + " id="+city+ " state="+cityState[1]+">").append
-            (image, $("<div class ='card-body'>").append(
-                $("<p>" + eventList[i].title + "</br>" + eventList[i].venueName +
-                    "</br>" + eventList[i].venueDisplayLocation + "</br>"
-                    + eventList[i].localTime + "</br>" + "<a href=" + eventList[i].venueURL + " class='btn btn-primary btn-outline-success' target='_blank'>Event URL</a>" + "</p>")))];
-
-
+        var card = [$("<div class = 'card eventCard' style='width: 17rem; margin: 10px' idValue=" + eventList[i].fbId + " id=" + city + " state=" + cityState[1] + ">").append
+            (image, $("<div class ='card-body'>").append($("<p class= 'eventDetails'>" + eventList[i].title + "</br>"
+                + eventList[i].venueName + "</br>" + eventList[i].venueDisplayLocation + "</br>" + moment(eventList[i].localTime).format("ddd MMM DD, YYYY hh:mma zz") + "</p>").append
+                ($("<button type='button' class='btn btn-secondary btn-modal' idValue=" + eventList[i].fbId + " >More Info</button>"))))];
         //display event data with information regarding event
         $("#events").append(card);
         $("#card").append(image);
-        // $(card).attr("class=", eventList[i].fbId);
     }
 }
+$(document).on("click", ".btn-modal", function () {
+    console.log(this);
+    var matchingId = $(this).attr("idvalue");
+    for (var i = 0; i < eventList.length; i++) {
+        if (matchingId === eventList[i].fbId) {
+            $(".modal-title").text(eventList[i].title);
+            $(".modalImage").attr("src", eventList[i].image);
+            $(".venueName").text(eventList[i].venueName);
+            $(".venueLocation").text(eventList[i].venueDisplayLocation);
+            $(".eventtime").text(moment(eventList[i].localTime).format("ddd MMM DD, YYYY hh:mma z"));
+            $(".prices").text("Low Price: $" + eventList[i].lowPrice + " - High Price: $" + eventList[i].highPrice);
+            $(".eventURL").attr("href", eventList[i].venueURL);
+            $("#eventModal").modal("show");
+        }
+    }
 
+});
