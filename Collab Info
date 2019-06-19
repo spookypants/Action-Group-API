@@ -30,3 +30,40 @@ secondary key if needed
 6ecab519277dd378cadb4b65c28698b2
 
 --------------------------------------------------------------------------
+Notes: Avinash Singh
+
+API Endpoint
+https://api.seatgeek.com/2
+
+Resource Endpoints
+/events
+/events/{EVENT_ID}
+/performers
+/performers/{PERFORMER_ID}
+/venues
+/venues/{VENUE_ID}
+
+
+LOCATION SEARCH BOX:
+1. "Location" argument cannot be used with the performers "endpoint" (gives a 400 error)
+2. Location cannot be meaningfully used with venues because it gives back venues as results not events.
+3. So the only viable option is to use the "events" endpoint in the query.
+4. The API only accepts LAT and LON or Zips as a filter so we are tied to Zips until we get Google maps API to give Location pooints based off of city and state.
+5. We can however provide a range option with a Zip option for the "Location" argument.
+6. We also have an option to use the "Venue" argument (Venue.City and/or Venue.State etc...)
+
+VENUE SEARCH BOX:
+1. Searching the API's venue endpoint returns a list of venues (not events)
+2. We can list those instead of listing events and then list events when a venue is selected on a new page.
+3. This does return "number of upcoming events"
+4. Or, to keep it simple, we can just use the "q" argument which pulls anything and everything that resembles the search string.
+
+PERFORMER SEARCH BOX
+1. similar to the "venue" end point, we can use the "performers" end point to return performers instead of events.
+2. then list the events off of the performer tha the user selects.
+3. We are currently pulling off of the "events" endpoint even when we search by performer.
+
+
+DATE FILTERS:
+1. Start date and end date can be used as follows:
+    datetime_local.gte=2013-04-01&datetime_local.lt=2013-05-01

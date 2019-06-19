@@ -154,41 +154,8 @@ p {
     padding: 10px;
 }
 
-<<<<<<< HEAD
 .eventDetails {
     font-size:14px;
-=======
-/* Event Details Page Formatting */
-
-
-img {
-    height: 300px;
-    width: 300px;
-}
-
-.myRow {
-    display: flex;
-    align-items: space-between;
-}
-
-#searchPic {
-    /* position: relative; */
-    /* display: inline-block !important; */
-    /* float: left !important; */
-    /* z-index: 100 !important; */
-
-}
-
-
-#searchResults {
-    background-color: rgb(235, 232, 224);
-    /* padding: 50px; */
-    /* word-wrap: break-word; */
-    /* display: inline-block !important; */
-    /* float: left !important; */
-
-
->>>>>>> master
 }
 
 /* .v1 {
@@ -200,6 +167,17 @@ img {
     top: 150px;
   } */
 
+
+/* styling for the graph */
+#xaxis .domain {
+fill: none;
+stroke: #000;
+}
+
+#xaxis text,
+#yaxis text {
+font-size: 12px;
+}
   /* modal style formatting  */
   .modal-title{
     font-family: 'Abril Fatface', cursive;
