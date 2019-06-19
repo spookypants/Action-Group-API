@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+<script src="https://kit.fontawesome.com/61c3fde754.js"></script>
 
     <!-- this is the youtube API reference -->
     <!-- <script src=“https://apis.google.com/js/api.js“></script> -->
@@ -72,21 +73,6 @@
                   </label>
                 </div> -->
 
-                <!-- UGLY ZIP CODE SEARCH, TO DELETE ON CONFIRMATION -->
-                <!-- <div class="col-sm-3 searchWrapper input-group">
-                    <input id="zipSearch" type="number" maxlength="5" class="mr-sm-8 search form-control" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radius</button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">5mi</a>
-                        <a class="dropdown-item" href="#">10mi</a>
-                        <a class="dropdown-item" href="#">15mi</a>
-                        <a class="dropdown-item" href="#">20mi</a>
-                        <a class="dropdown-item" href="#">25mi</a>
-                      </div>
-                    </div>
-                  </div> -->
-
                 <!-- <div class="col-sm-3 searchWrapper">
                   <label class="radio-inline"> -->
                   <!-- <input type="radio" name="optradio" data-name="radio-zip"> -->
@@ -99,26 +85,26 @@
                 <!-- <div class="col-sm-6 input-group searchWrapper">
                   <input id="search" class="mr-sm-8 search" type="search" placeholder="Enter search here..." aria-label="Primary search bar"> -->
                   <div class="col-sm-6 input-group searchWrapper">
-                      <input type="search" class="form-control search" aria-label="Search input with dropdown button">
+                      <input type="search" class="form-control search searchBar" placeholder="Enter search here..." aria-label="Search input with dropdown button">
                       <div class="input-group-append">
                       <button class="btn btn-outline-success dropdown-toggle" id="searchBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Performer</a>
-                        <a class="dropdown-item" href="#">Venue</a>
-                        <a class="dropdown-item" href="#">Zip Code</a>
+                        <a class="dropdown-item button" id="artistSearch" ><i class="fas fa-microphone"></i> Artist</a>
+                        <a class="dropdown-item button" id="venueSearch" ><i class="fas fa-building"></i> Venue</a>
+                        <a class="dropdown-item button" id="zipSearch" ><i class="fas fa-map-marked-alt"></i> Zip Code</a>
                       </div>
                     </div>
                   </div>
                 <div class="col-sm-2 searchWrapper">
-                  <input id="startDateSearch" class="mr-sm-8 search" type="date" placeholder="Start Date (MM/DD/YYYY)" aria-label="Event Start Date">
-                  <small id="dateHelp" class="form-text text-muted">Start Date</small>
+                  <!-- <small id="dateHelp" class="form-text text-muted">Start Date</small> -->
+                  <input id="startDateSearch" class="mr-sm-8 search" type="date" placeholder="Start Date" aria-label="Event Start Date">
                 </div>
                 <div class="col-sm-2 searchWrapper">
-                  <input id="endDateSearch" class="mr-sm-8 search" type="date" placeholder="End Date (MM/DD/YYYY)" aria-label="Event End Date">
-                  <small id="dateHelp" class="form-text text-muted">End Date</small>
+                  <!-- <small id="dateHelp" class="form-text text-muted">End Date</small> -->
+                  <input id="endDateSearch" class="mr-sm-8 search" type="date" placeholder="End Date" aria-label="Event End Date">
                 </div>  
                 <div class="col-sm-2">
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit"><i class="fas fa-search"></i> Search</button>
                 </div>
               </form>
 
@@ -141,7 +127,7 @@
         <div class="carousel-item active">
           <img src="./assets/images/guitar1.jpg" class="d-block w-100" alt="A guitarist performing">
           <div class="carousel-caption d-none d-md-block">
-            <h4>Welcome to </h4><h5>event+</h5>
+            <h4>Welcome to </h4><h5>e v e n t +</h5>
             <p>Everything worth knowing about where you're going.</p>
           </div>
         </div>

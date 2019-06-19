@@ -50,20 +50,20 @@ $("#searchBtn").on("click", function (event) {
     }
 });
 
-// RADIO BUTTON LOGIC by GABE
-$(".radio-text").on("input", function(event) {
-    debugger;
-    console.log("The input field says " + $(this).val());
-    if($(".radio-text").val() === ""){
-        $(".radio-text").prop("disabled", true);
-    
+// DROPDOWN SEARCH BUTTON ID SETTING FUNCTION by GABE
+$("#artistSearch, #venueSearch, #zipSearch").click(function(){
+    if (this.id == 'artistSearch') {
+        console.log("artist search");
+        $(".searchBar").prop("id", "artistSearch");
     }
-    // use jquery to figure out what 'this' data-name attr is
-
-    // find the 'radio-' + whatever data-name attr of the radio button
-
-    // check that button
-    // $("selector").attr("checked", true);
+    else if (this.id == 'venueSearch') {
+        console.log("venue search");
+        $(".searchBar").prop("id", "venueSearch");
+    }
+    else if (this.id == 'zipSearch') {
+        console.log("zip search");
+        $(".searchBar").prop("id", "zipSearch");
+    }
 })
 
 
@@ -117,7 +117,7 @@ function validateSearchForm() {
 };
 
 function formSearchQuery (apiToQuery){
-    debugger;
+    // debugger;
     var returnQuery = ""
 
     //add the initial domain and endpoints
