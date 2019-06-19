@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<!-- this does in our css file -->
+    <style>
+        #xaxis .domain {
+          fill: none;
+          stroke: #000;
+        }
+        
+        #xaxis text,
+        #yaxis text {
+          font-size: 12px;
+        }
+      </style>
+<!-- http://plnkr.co/edit/XNsDCqZsUUajBH6Y1sNY?p=preview -->
+</head>
+<body>
+    <div id="wrapper">
+    </div>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        //debugger;
+      var events = ['Jonas Brothers', 'UT Longhorns', 'Rihanna', 'Test Artist'];
+  
+      var priceRange = [[75,209], [50,190], [100,179], [140,156]];
+  
+      var colors = ['#0082ca', '#0094ff', '#0d4bcf', '#0066AE'];
+  
+      var highestPrice = 700;
+      //d3.range returns an array of evenly-spaced numbers. In its simplest form, it returns the integers from zero to the specified end minus one
+
+    //   var grid = d3.range(25).map(function(i) {
+    //     return {
+    //       'x1': 0,
+    //       'y1': 0,
+    //       'x2': 0,
+    //       'y2': 480
+    //     };
+    //   });
+  
+  
+      var xscale = d3.scale.linear()
+        .domain([0, highestPrice])//this is the spread of the ticket prices min to max
+        .range([0, 400]); //this is the width of our grid in px
+  
+      var yscale = d3.scale.linear()
+        .domain([0, events.length])//this is the number of events in our list
+        .range([0, 100]);//this is the height of our grid
+  
+      var colorScale = d3.scale.quantize()
+        .domain([0, events.length])//this is the number of events in our list
+        .range(colors);//this is the color to apply to each event in list
+  
+      var canvas = d3.select('#wrapper')//this is the size of our chart
+        .append('svg')
+        .attr({
+          'width': 400,
+          'height': 120
+        });
+  
+      var xAxis = d3.svg.axis();
+      xAxis
+        .orient('bottom')
+        .scale(xscale)
+  
+      var yAxis = d3.svg.axis();
+      yAxis
+        .orient('left')
+        .scale(yscale)
+        .tickSize(2)
+        .tickFormat(function(d, i) {
+          return events[i];
+         })
+        .tickValues(d3.range(17));
+  
+      var y_xis = canvas.append('g')
+        .attr("transform", "translate(100,15)")
+        .attr('id', 'yaxis')
+        .call(yAxis);
+  
+      var x_xis = canvas.append('g')
+        .attr("transform", "translate(100,120)")
+        .attr('id', 'xaxis')
+        .call(xAxis);
+  
+      var chart = canvas.append('g')
+        .attr("transform", "translate(100,0)")
+        .attr('id', 'bars')
+        .selectAll('rect')
+        .data(priceRange)
+        .enter()
+        .append('rect')
+        .attr('height', 15)
+        // .text(function (d) {
+        //     return d[0] + "-" + d[1];
+        //     })
+        .attr({
+          'x': function(d) {
+            return xscale(d[0]);
+          },
+          'y': function(d, i) {
+            return yscale(i) + 10;
+          }
+        })
+        .style('fill', function(d, i) {
+          return colorScale(i);
+        })
+        .attr('width', function(d) {
+          return 0;
+        });
+  
+  
+      var transit = d3.select("svg").selectAll("rect")
+        .data(priceRange)
+        .text(function (d) {
+            return "$" + d[0] + " - $" + d[1];
+            })
+        .transition()
+        .duration(1000)
+        .attr("width", function(d) {
+          return xscale(d[1]) - xscale(d[0]);
+        });
+    </script>
+</body>
+</html>
