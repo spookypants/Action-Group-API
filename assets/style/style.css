@@ -2,17 +2,19 @@
     max-height: 400px;
 } */
 
-#row {
-    align-content: center;
+.row {
+    display: inline;
 }
 
 .navbar-light {
+
     background-color:#e1f2fe;
 }
 
 .navbar-dark {
     background-color:#769fb6;
     color:white;
+
 }
 
 .navbar {
@@ -21,6 +23,10 @@
 
 .form-inline {
     width:100%;
+}
+
+#event-title {
+    text-align: center;
 }
 
 /* #searchform {
@@ -38,6 +44,7 @@
 
 .bad-carousel {
     width:100%;
+
 }
 
 #searchBtn {
@@ -149,19 +156,34 @@ p {
 
 /* Event Details Page Formatting */
 
-#searchPic {
-    position: relative;
-    display: block;
-}
 
 img {
     height: 300px;
     width: 300px;
 }
 
+.myRow {
+    display: flex;
+    align-items: space-between;
+}
+
+#searchPic {
+    /* position: relative; */
+    /* display: inline-block !important; */
+    /* float: left !important; */
+    /* z-index: 100 !important; */
+
+}
+
+
 #searchResults {
     background-color: rgb(235, 232, 224);
-    padding-top: 50px;
+    /* padding: 50px; */
+    /* word-wrap: break-word; */
+    /* display: inline-block !important; */
+    /* float: left !important; */
+
+
 }
 
 /* .v1 {
