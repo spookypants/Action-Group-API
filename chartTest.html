@@ -21,7 +21,7 @@
 <!-- http://plnkr.co/edit/XNsDCqZsUUajBH6Y1sNY?p=preview -->
 </head>
 <body>
-    <div id="wrapper">
+    <div id="graphCell">
     </div>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script>
@@ -31,8 +31,10 @@
       var priceRange = [[75,209], [50,190], [100,179], [140,156]];
   
       var colors = ['#0082ca', '#0094ff', '#0d4bcf', '#0066AE'];
+
+      var textPrices = ["$75 - $209", "$50 - $190", "$100 - $179", "$140 - $156"]
   
-      var highestPrice = 700;
+      var highestPrice = 400;
       //d3.range returns an array of evenly-spaced numbers. In its simplest form, it returns the integers from zero to the specified end minus one
 
     //   var grid = d3.range(25).map(function(i) {
@@ -47,21 +49,21 @@
   
       var xscale = d3.scale.linear()
         .domain([0, highestPrice])//this is the spread of the ticket prices min to max
-        .range([0, 400]); //this is the width of our grid in px
+        .range([0, 400]); //this is the width of our grid
   
       var yscale = d3.scale.linear()
         .domain([0, events.length])//this is the number of events in our list
-        .range([0, 100]);//this is the height of our grid
+        .range([0, 150]);//this is the height of our grid
   
       var colorScale = d3.scale.quantize()
         .domain([0, events.length])//this is the number of events in our list
         .range(colors);//this is the color to apply to each event in list
   
-      var canvas = d3.select('#wrapper')//this is the size of our chart
+      var canvas = d3.select('#graphCell')//this is the size of our chart
         .append('svg')
         .attr({
           'width': 400,
-          'height': 120
+          'height': 250
         });
   
       var xAxis = d3.svg.axis();
@@ -85,7 +87,7 @@
         .call(yAxis);
   
       var x_xis = canvas.append('g')
-        .attr("transform", "translate(100,120)")
+        .attr("transform", "translate(100,165)")
         .attr('id', 'xaxis')
         .call(xAxis);
   
@@ -97,9 +99,6 @@
         .enter()
         .append('rect')
         .attr('height', 15)
-        // .text(function (d) {
-        //     return d[0] + "-" + d[1];
-        //     })
         .attr({
           'x': function(d) {
             return xscale(d[0]);
@@ -114,18 +113,43 @@
         .attr('width', function(d) {
           return 0;
         });
-  
+
+        var chart2 = canvas.append('g')
+        .attr('id', 'prices')
+        .selectAll('text')
+        .data(priceRange)
+        .enter()
+        .append('text')
+        //.attr('height', 15)
+        .text(function (d) {
+          return "$" + d[0] + " - $" + d[1];
+            })
+        .attr({
+          'x': function(d) {
+            return xscale(d[0] + 100);
+          },
+          'y': function(d, i) {
+            return yscale(i) + 36;
+          }
+        })
+        .attr("font-size", "12px");
+
   
       var transit = d3.select("svg").selectAll("rect")
         .data(priceRange)
-        .text(function (d) {
-            return "$" + d[0] + " - $" + d[1];
-            })
+        .text(function (d) {return "$" + d[0] + " - $" + d[1];})
         .transition()
         .duration(1000)
         .attr("width", function(d) {
           return xscale(d[1]) - xscale(d[0]);
         });
+
+      // var labs = d3.select("svg").selectAll("text")
+      //   .data(priceRange)
+      //   .enter()
+      //   //.append('text')
+      //   .text(function (d) {return "$" + d[0] + " - $" + d[1];})
+      
     </script>
 </body>
 </html>

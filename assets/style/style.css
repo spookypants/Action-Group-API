@@ -155,3 +155,15 @@ img {
     margin-left: -3px;
     top: 150px;
   } */
+
+
+/* styling for the graph */
+#xaxis .domain {
+fill: none;
+stroke: #000;
+}
+
+#xaxis text,
+#yaxis text {
+font-size: 12px;
+}

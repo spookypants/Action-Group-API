@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
       crossorigin="anonymous"> -->
-
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" 
-      rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+      <!-- reset css reference -->
     <link rel="stylesheet" href="assets/style/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Megrim|Righteous&display=swap" rel="stylesheet">
+   
+    <!-- d3 reference -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
+    <!-- jquery reference -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
@@ -32,6 +34,7 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+ <!-- reference to event+ stylesheet -->
 <link rel="stylesheet" type="text/css" href="assets/style/style.css">
 
     <!-- this is the youtube API reference -->
@@ -202,7 +205,18 @@
                 <p><span id="eventTime"></span></p>
 
             </div>
-            <div class="col-sm-4" id="youtube" class="iframe-container">
+            <div class="col-sm-4">
+                <div class="row">
+                  <div id="graphCell" class="col-sm-12">
+
+                  </div>
+              
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" id="youtube" class="iframe-container">
+
+                    </div>
+                  </div>
                 <!-- <h2>YOUTUBE STUFF HERE</h2>
                 <p>An embedded YouTube player, which will populate with a relevant YouTube video playlist, will appear here, which is also very exciting news.</p> -->
                 <!-- THIS IS AN EMBEDDED PLACEHOLDER ONLY FOR VISUAL REFERENCE -->

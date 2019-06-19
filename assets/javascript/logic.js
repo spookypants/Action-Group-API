@@ -31,6 +31,10 @@ var addStartDate = "";
 var addEndDate = "";
 var addMoreResults = false; //turn this to true when add more results id clicked///////////////////////////////////
 var eventList = new Array();
+var graphEvents = new Array();
+var graphPrices = new Array();
+var graphColors = ['#769FB6', '#E1F2FE', '#373E40', '#188FA7'];
+var graphHighestMaxPrice = 400;
 
 //when the user submits a search term incorporate it into the event search query
 $("#searchBtn").on("click", function (event) {
@@ -111,7 +115,7 @@ function validateSearchForm() {
 };
 
 function formSearchQuery (apiToQuery){
-    debugger;
+    //debugger;
     var returnQuery = ""
 
     //add the initial domain and endpoints
@@ -178,6 +182,7 @@ function getSearchResults(queryStr) {
             var resultSet = response.events;
             writeRecords(resultSet, "SeatGeek");
             displayEventCards();
+            displayGraph();
         } else {
             $("#events").append('<p>' + "No matching events found." + '</p>');
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,10 +197,7 @@ function getSearchResults(queryStr) {
 //Write the records to the DB
 function writeRecords(resultSet, source) {
     //debugger;
-    //clear the displayed events list from the Firebase database
-    // if(!addMoreResults){
-    //     db.ref("events").removeValue();
-    // }
+
     for (var i = 0; i < resultSet.length; i++) {
         var recordData = {
             title: resultSet[i].title,
@@ -299,6 +301,126 @@ function displayEventCards(){
         $("#events").append(card);
         $("#card").append(image);
         // $(card).attr("class=", eventList[i].fbId);
+
+        //added by avinash to create pricing array for events
+        //Limit event name to 15 character before storing
+        if(eventList[i].title.length < 16){
+            graphEvents.push(eventList[i].title);
+        }else{
+            graphEvents.push(eventList[i].title.substring(0, 15));
+        }
+        graphPrices.push([eventList[i].lowPrice, eventList[i].highPrice])
+        if(eventList[i].highPrice > graphHighestMaxPrice){
+            graphHighestMaxPrice = eventList[i].highPrice;
+        }
     }
 }
 
+//this function displays a graph from the ticket price data from the events displayed 
+function displayGraph(){
+    var xscale = d3.scale.linear()
+    .domain([0, graphHighestMaxPrice])//this is the spread of the ticket prices min to max
+    .range([0, 270]); //this is the width of our grid
+
+  var yscale = d3.scale.linear()
+    .domain([0, graphEvents.length])//this is the number of events in our list
+    .range([0, 250]);//this is the height of our grid
+
+  var colorScale = d3.scale.quantize()
+    .domain([0, graphEvents.length])//this is the number of events in our list
+    .range(graphColors);//this is the color to apply to each event in list
+
+  var canvas = d3.select('#graphCell')//this is the size of our chart
+    .append('svg')
+    .attr({
+      'width': 400,
+      'height': 300
+    });
+
+  var xAxis = d3.svg.axis();
+  debugger;
+  if(parseInt(graphHighestMaxPrice) > 3000){
+    xAxis
+    .orient('bottom')
+    .scale(xscale)
+    .tickFormat(d3.format("s"))
+  }else{
+    xAxis
+    .orient('bottom')
+    .scale(xscale)
+  }
+  
+
+  var yAxis = d3.svg.axis();
+  yAxis
+    .orient('left')
+    .scale(yscale)
+    .tickSize(2)
+    .tickFormat(function(d, i) {
+      return graphEvents[i];
+     })
+    .tickValues(d3.range(10));
+
+  var y_xis = canvas.append('g')
+    .attr("transform", "translate(100,15)")
+    .attr('id', 'yaxis')
+    .call(yAxis);
+
+  var x_xis = canvas.append('g')
+    .attr("transform", "translate(100,262)")
+    .attr('id', 'xaxis')
+    .call(xAxis);
+
+  var chart = canvas.append('g')
+    .attr("transform", "translate(100,0)")
+    .attr('id', 'bars')
+    .selectAll('rect')
+    .data(graphPrices)
+    .enter()
+    .append('rect')
+    .attr('height', 15)
+    .attr({
+      'x': function(d) {
+        return xscale(d[0]);
+      },
+      'y': function(d, i) {
+        return yscale(i) + 10;
+      }
+    })
+    .style('fill', function(d, i) {
+      return colorScale(i);
+    })
+    .attr('width', function(d) {
+      return 0;
+    });
+
+    var chart2 = canvas.append('g')
+    .attr('id', 'prices')
+    .selectAll('text')
+    .data(graphPrices)
+    .enter()
+    .append('text')
+    .text(function (d) {
+      return "$" + d[0] + " - $" + d[1];
+        })
+    .attr({
+      'x': function(d) {
+        return xscale (d[0]) + 100; 
+      },
+      'y': function(d, i) {
+        return yscale(i) + 36;
+      }
+    })
+    .attr("font-size", "12px");
+
+
+  var transit = d3.select("svg").selectAll("rect")
+    .data(graphPrices)
+    .text(function (d) {return "$" + d[0] + " - $" + d[1];})
+    .transition()
+    .duration(1000)
+    .attr("width", function(d) {
+      return xscale(d[1]) - xscale(d[0]);
+    });
+
+}
