@@ -18,6 +18,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
+    <!-- Moment.js reference -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
@@ -37,7 +40,6 @@
 </head>
 <body>
 
-        <div class="container">
         <!-- NAV BAR -->
         <div class="row">
           <div class="col-md-12">
@@ -48,30 +50,91 @@
               </div>
             </div>
         </div>
-            <hr>
+            <!-- <hr> -->
+<div class="container">
+
 <!-- SEARCH FORM-->
       <div id="row">
           <div class="col-md-12" id="searchBar">
             <nav class="navbar navbar-light">
+              <!-- TOP ROW SEARCH BOXES -->
               <div class="form-inline">
                 <div class="col-sm-3 searchWrapper">
-                <input id="artistSearch" class="mr-sm-8 search" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
+                  <input id="artistSearch" class="mr-sm-8 search" type="search" placeholder="Search by Artist" aria-label="Search By Artist">
                 </div>
                 <div class="col-sm-3 searchWrapper">
-                <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
+                  <input id="venueSearch" class="mr-sm-8 search" type="search" placeholder="Search by Venue" aria-label="Search By Venue">
                 </div>
-                <div class="col-sm-3 searchWrapper">
+
+                <div class="col-sm-3 searchWrapper input-group">
+                    <input id="zipSearch" type="number" maxlength="5" class="mr-sm-8 search form-control" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radius</button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">5mi</a>
+                        <a class="dropdown-item" href="#">10mi</a>
+                        <a class="dropdown-item" href="#">15mi</a>
+                        <a class="dropdown-item" href="#">20mi</a>
+                        <a class="dropdown-item" href="#">25mi</a>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <div class="col-sm-2 searchWrapper">
+                  <input id="zipSearch" class="mr-sm-8 search" type="search" placeholder="Search by Zip Code" aria-label="Search by Zip Code">
+                </div>-->
+                <!-- ZIP CODE RADIUS DROP DOWN -->
+                <!-- <div class="dropdown col-sm-2 text-center">
+                  <button id="radiusBtn" class="btn btn-outline-success btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Radius
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">5 mi</a></li>
+                    <li><a href="#">10 mi</a></li>
+                    <li><a href="#">15 mi</a></li>
+                  </ul>
+                </div> -->
+                <!-- <div class="col-sm-3 searchWrapper">
                 <input id="locationSearch" class="mr-sm-8 search" type="search" placeholder="Search by Location" aria-label="Search By Location">
-                </div>
+                </div> -->
                 <!-- <input id="startDateSearch" class="mr-sm-8" type="search" placeholder="Start Date" aria-label="Search By start date">
                 <input id="endDateSearch" class="mr-sm-8" type="search" placeholder="End Date" aria-label="Search By end date"> -->
-                <div class="col-sm-3">
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+                <div class="col-sm-2">
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-2" data-toggle="modal" data-target="#userPrompt" type="submit">Search</button>
                 </div>
               </form>
+              <!-- BOTTOM ROW SEARCH BOXES -->
+              <div class="form-inline">
+                <div class="col-sm-3 searchWrapper"></div>
+                <div class="col-sm-3 searchWrapper">
+                  <input id="startDateSearch" class="mr-sm-8 search" type="date" placeholder="Start Date (MM/DD/YYYY)" aria-label="Event Start Date">
+                </div>
+                <div class="col-sm-3 searchWrapper">
+                  <input id="endDateSearch" class="mr-sm-8 search" type="date" placeholder="End Date (MM/DD/YYYY)" aria-label="Event End Date">
+                </div>  
+              </div>
             </nav>
           </div>
       </div>
+      <!-- Modal -->
+<!-- <div class="modal fade" id="userPrompt" tabindex="-1" role="dialog" aria-labelledby="userPromptLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Help us help you!</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Looks like you forgot to enter some search parameters. To use event+, please search by an artist name, venue, location, or time!</br></br>
+        YOU SHOULD ONLY SEE THIS IF YOU HIT SEARCH WITHOUT PUTTING ANYTHING IN THE SEARCH!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  </div> -->
       <hr>
 
 <!-- CAROUSEL -->

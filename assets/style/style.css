@@ -23,10 +23,12 @@
 } */
 
 .jumbotron {
-    background-color:#9DBBAE;
+    background-color:#769fb6;
     height:60px;
-    margin-top:-45px;
-    margin-bottom:-5px;
+    color:white;
+    margin-top:-70px;
+    padding-bottom:auto;
+    /* margin-bottom:-1px; */
 }
 
 #searchBtn {
@@ -34,10 +36,15 @@
     width:100%;
 }
 
+#radiusBtn {
+    background-color: #769FB6;
+    width:60%;
+}
+
 .search {
     width:100%;
     padding: 0 0 0 10px;
-    background-color: #E2DBBE;
+    /* background-color: #E2DBBE; */
 }
 
 .searchWrapper {
@@ -47,6 +54,11 @@
 
 .btn {
     background-color: rgb(182, 185, 187);
+}
+
+.btn-primary{
+    background-color: #769fb6;
+    margin: 10px 0;
 }
 
 .button {
@@ -117,3 +129,29 @@ p {
 .card-body {
     padding: 10px;
 }
+
+/* Event Details Page Formatting */
+
+#searchPic {
+    position: relative;
+    display: block;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+#searchResults {
+    background-color: rgb(235, 232, 224);
+    padding-top: 50px;
+}
+
+/* .v1 {
+    border-left: 1px solid #E2DBBE;
+    height: 200px;
+    position: absolute;
+    left: 36%;
+    margin-left: -3px;
+    top: 150px;
+  } */
