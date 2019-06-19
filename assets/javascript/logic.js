@@ -50,6 +50,22 @@ $("#searchBtn").on("click", function (event) {
     }
 });
 
+// DROPDOWN SEARCH BUTTON ID SETTING FUNCTION by GABE
+$("#artistSearch, #venueSearch, #zipSearch").click(function(){
+    if (this.id == 'artistSearch') {
+        console.log("artist search");
+        $(".searchBar").prop("id", "artistSearch");
+    }
+    else if (this.id == 'venueSearch') {
+        console.log("venue search");
+        $(".searchBar").prop("id", "venueSearch");
+    }
+    else if (this.id == 'zipSearch') {
+        console.log("zip search");
+        $(".searchBar").prop("id", "zipSearch");
+    }
+})
+
 
 //this function validates the search form and displays the appropriate messaage to the user
 function validateSearchForm() {
@@ -110,8 +126,13 @@ function validateSearchForm() {
     return validSearch;
 };
 
+<<<<<<< HEAD
 function formSearchQuery(apiToQuery) {
     debugger;
+=======
+function formSearchQuery (apiToQuery){
+    // debugger;
+>>>>>>> master
     var returnQuery = ""
 
     //add the initial domain and endpoints
