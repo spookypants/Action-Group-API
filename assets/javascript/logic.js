@@ -25,7 +25,7 @@ var seatGeekQuery = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU
 var youTubeQuery = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&order=viewCount&type=video&videoEmbeddable=true&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI&q=";
 var addPerformers = "";
 var addLocationZip = "";
-var addRadius = "25mi";
+var addRadius = "25mi";//this is the default
 var addVenue = "";
 var addStartDate = "";
 var addEndDate = "";
@@ -88,11 +88,21 @@ function validateSearchForm() {
 
     //if the search is accepted, clear the input boxes for the next query
     if (validSearch) {
+        //clear the input boxes
         $("#venueSearch").val("");
         $("#zipSearch").val("");
         $("#artistSearch").val("");
-        //$("#startDateSearch").val("");
-        //$("#endDateSearch").val("");
+        $("#startDateSearch").val("");
+        $("#endDateSearch").val("");
+
+        //clear the stored variables to prepare for the next search
+        addPerformers = "";
+        addLocationZip = "";
+        addRadius = "25mi"; //this is the default
+        addVenue = "";
+        addStartDate = "";
+        addEndDate = "";
+
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //add appropriate messages to message box
@@ -111,6 +121,7 @@ function formSearchQuery(apiToQuery) {
         if (addPerformers != "") {
             returnQuery += "&q=" + addPerformers.replace(/\s+/g, "+");
         }
+<<<<<<< HEAD
         if (addLocationZip != "") {
             returnQuery += "&geoip=" + addLocationZip + "&range=" + addRadius;
         }
@@ -123,18 +134,39 @@ function formSearchQuery(apiToQuery) {
         }
 
         if ($("#startDateSearch").val() != "") {
+=======
+        if(addVenue != ""){
+            if(addPerformers != ""){
+                returnQuery += "+" + addVenue;
+            }else{
+                returnQuery += "&q=" + addVenue;
+            }
+        }
+        if(addLocationZip != ""){
+            returnQuery += "&geoip=" + addLocationZip + "&range=" + addRadius;
+        }
+    
+        if($("#startDateSearch").val() != ""){
+>>>>>>> master
             debugger;
-            //format the date into the format reequired by the API (YYYY-MM-DD)
-            var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
-            var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
+            // //format the date into the format reequired by the API (YYYY-MM-DD)
+            // var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
+            // var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
 
             //add dates filter based on search term for each API
-            addStartDate = startDate.format("YYYY-MM-DD");
+            addStartDate = $("#startDateSearch").val();
             //if end date is populated use it else default it to the start date
+<<<<<<< HEAD
             if ($("#endDateSearch").val != "") {
                 addEndDate = endDate.format("YYYY-MM-DD");
             } else {
                 addEndDate = startDate.format("YYYY-MM-DD");
+=======
+            if($("#endDateSearch").val() != ""){
+                addEndDate = $("#endDateSearch").val();
+            }else{
+                addEndDate = $("#startDateSearch").val();
+>>>>>>> master
             }
             returnQuery += "&datetime_utc.gte=" + addStartDate + "&datetime_utc.lte=" + addEndDate;
         }
@@ -240,8 +272,13 @@ function displayYouTubeVideo() {
         }
 
     })
+<<<<<<< HEAD
 }
 
+=======
+    window.open("details.html", "_blank");
+});
+>>>>>>> master
 //function to create cards and display event data
 function displayEventCards() {
     var loops = 0
