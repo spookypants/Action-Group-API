@@ -64,6 +64,11 @@
     background-color: rgb(182, 185, 187);
 }
 
+.btn-primary{
+    background-color: #769fb6;
+    margin: 10px 0;
+}
+
 .button {
     float: center;
 }
