@@ -66,13 +66,13 @@
         <div class="col-md-12" id="searchBar" data-toggle="tooltip" data-placement="bottom" title="Select one search parameter and enter your query">
           <nav class="navbar navbar-light">
             <div class="col-sm-6 input-group searchWrapper">
-              <input type="search" class="form-control search searchBar" placeholder="Enter search here..." aria-label="Search input with dropdown button">
+              <input type="search" class="form-control search searchBar" placeholder="Enter Artist Name:" searchType="performer" aria-label="Search input with dropdown button">
                 <div class="input-group-append">
-                <button class="btn btn-outline-success dropdown-toggle" id="searchBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
+                <button id="searchSelectBtn"class="btn btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item button" id="artistSearch" ><i class="fas fa-microphone"></i> Artist</a>
-                    <a class="dropdown-item button" id="venueSearch" ><i class="fas fa-building"></i> Venue</a>
-                    <a class="dropdown-item button" id="zipSearch" ><i class="fas fa-map-marked-alt"></i> Zip Code</a>
+                    <a id="artistSearch" class="dropdown-item button" ><i class="fas fa-microphone"></i> Artist</a>
+                    <a id="venueSearch" class="dropdown-item button" ><i class="fas fa-building"></i> Venue</a>
+                    <a id="zipSearch" class="dropdown-item button" ><i class="fas fa-map-marked-alt"></i> Zip Code</a>
                   </div>
                 </div>
             </div>
