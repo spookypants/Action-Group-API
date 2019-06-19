@@ -49,7 +49,7 @@ $("#searchBtn").on("click", function (event) {
         displayYouTubeVideo();
 
     } else {
-        //don't do anything if the search form is not valid
+        //don't do anything if the search form is not valid & alert user////////////////////////////////////////////
         return;
     }
 })
@@ -268,7 +268,6 @@ function displayYouTubeVideo() {
         }
 
     })
-    window.open("details.html", "_blank");
 }
 
 //function to create cards and display event data
