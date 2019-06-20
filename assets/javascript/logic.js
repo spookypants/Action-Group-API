@@ -22,7 +22,7 @@ var db = firebase.database();
 
 var finalSearchQuery = ""
 var seatGeekQuery = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU2MDQ1NDI2Ni45OA&sort=score.desc";
-var youTubeQuery = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&order=viewCount&type=video&videoEmbeddable=true&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI&q=";
+var youTubeQuery = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&type=video&videoEmbeddable=true&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI&q=";
 var addPerformers = "";
 var addLocationZip = "";
 var addRadius = "25mi";//this is the default
@@ -47,6 +47,7 @@ $("#searchBtn").on("click", function (event) {
         finalSearchQuery = formSearchQuery("seatGeek");
         getSearchResults(finalSearchQuery);
         displayYouTubeVideo();
+        resetSearch();
 
     } else {
         //don't do anything if the search form is not valid & alert user////////////////////////////////////////////
@@ -108,26 +109,8 @@ function validateSearchForm() {
         console.log("location: " + $(".searchBar").val());
     }
 
-    //If a start date is added but not the end date, Default end date to be the same as start date.//////////////////////
-
-    //if the search is accepted, clear the input boxes for the next query
-    if (validSearch) {
-        //clear the input boxes
-        $(".searchBar").val("")
-        $("#startDateSearch").val("");
-        $("#endDateSearch").val("");
-
-        //clear the stored variables to prepare for the next search////////////////////////////////////////////this needs to be moved to a reset function
-        // addPerformers = "";
-        // addLocationZip = "";
-        // addRadius = "25mi"; //this is the default
-        // addVenue = "";
-        // addStartDate = "";
-        // addEndDate = "";
-
-    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //add appropriate messages to message box
+    //add appropriate messages to message box if search is not valid
     /////////////////////////////////////////////////////
     return validSearch;
 }
@@ -306,6 +289,29 @@ function displayEventCards() {
     }
 }
 
+function resetSearch(){
+//if the search is accepted, clear the input boxes for the next query
+//clear the input boxes
+$(".searchBar").val("")
+$("#startDateSearch").val("");
+$("#endDateSearch").val("");
+
+//clear the stored variables to prepare for the next search////////////////////////////////////////////this needs to be moved to a reset function
+addPerformers = "";
+addLocationZip = "";
+addRadius = "25mi"; //this is the default
+addVenue = "";
+addStartDate = "";
+addEndDate = "";
+
+//clear and reset the graph
+$("#graphCell").empty();
+graphEvents.length = 0;
+graphPrices.length = 0;
+graphHighestMaxPrice = 400;
+
+}
+
 $(document).on("click", ".btn-modal", function () {
     console.log(this);
     var matchingId = $(this).attr("idvalue");
@@ -424,7 +430,7 @@ function displayGraph(){
     .data(graphPrices)
     .text(function (d) {return "$" + d[0] + " - $" + d[1];})
     .transition()
-    .duration(1000)
+    .duration(2000)
     .attr("width", function(d) {
       return xscale(d[1]) - xscale(d[0]);
     })

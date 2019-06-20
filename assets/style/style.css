@@ -188,14 +188,20 @@ stroke: #000;
 #yaxis text {
 font-size: 12px;
 }
-  /* modal style formatting  */
-  .modal-title{
-    font-family: 'Abril Fatface', cursive;
-    font-size: 24px;
-  }
-  .modal-body{
-    font-family: 'Righteous', cursive;
-    font-size:20px;
-  }
+
+svg {
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+/* modal style formatting  */
+.modal-title{
+font-family: 'Abril Fatface', cursive;
+font-size: 24px;
+}
+.modal-body{
+font-family: 'Righteous', cursive;
+font-size:20px;
+}
   
  
