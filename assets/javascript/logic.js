@@ -33,7 +33,7 @@ var addMoreResults = false; //turn this to true when add more results id clicked
 var eventList = new Array();
 var graphEvents = new Array();
 var graphPrices = new Array();
-var graphColors = ['#769FB6', '#E1F2FE', '#373E40', '#188FA7'];
+var graphColors = ['#769FB6', '#9DBBAE', '#373E40', '#188FA7'];
 var graphHighestMaxPrice = 400;
 
 //when the user submits a search term incorporate it into the event search query
