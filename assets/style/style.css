@@ -1,24 +1,30 @@
-/* #carousel {
-    max-height: 400px;
-} */
-
 .row {
-    display: inline;
+    /* display: inline; */
+    width:100%;
 }
 
 .navbar-light {
-
     background-color:#e1f2fe;
 }
 
 .navbar-dark {
     background-color:#769fb6;
     color:white;
+}
 
+.nav.col-md-12 {
+    max-width:100%;
+    padding:0;
+}
+
+.nav-content {
+    padding-left:28px;
 }
 
 .navbar {
-    justify-content:center;
+    width:100%;
+    padding-left:15px;
+    padding-right:15px;
 }
 
 .form-inline {
@@ -49,6 +55,11 @@
 
 #searchBtn {
     background-color: #769FB6;
+    width:100%;
+}
+
+#searchSelectBtn {
+    background-color:#769FB6;
     width:100%;
 }
 
