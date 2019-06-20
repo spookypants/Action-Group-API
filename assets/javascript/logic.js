@@ -58,50 +58,54 @@ $("#searchBtn").on("click", function (event) {
 $("#artistSearch, #venueSearch, #zipSearch").click(function(){
     if (this.id == 'artistSearch') {
         console.log("artist search");
-        $(".searchBar").prop("id", "artistSearch");
+        $(".searchBar").attr("searchType", "artistSearch");
+        $(".searchBar").attr("placeholder", "Enter Artist Name:");
+        $("#searchSelectBtn").text("Artist");
     }
     else if (this.id == 'venueSearch') {
         console.log("venue search");
-        $(".searchBar").prop("id", "venueSearch");
+        $(".searchBar").attr("searchType", "venueSearch");
+        $(".searchBar").attr("placeholder", "Enter Venue Name:");
+        $("#searchSelectBtn").text("Venue");
     }
     else if (this.id == 'zipSearch') {
         console.log("zip search");
-        $(".searchBar").prop("id", "zipSearch");
+        $(".searchBar").attr("searchType", "zipSearch");
+        $(".searchBar").attr("placeholder", "Enter a 5 digit Zip:");
+        $("#searchSelectBtn").text("Zip");
     }
 })
 
 
 //this function validates the search form and displays the appropriate messaage to the user
 function validateSearchForm() {
-    //debugger;
+    debugger;
     var artistPopulated = false;
     var venuePopulated = false;
     var locationPopulated = false;
     var validSearch = true;
     //if an artist is populated, the search is valid
-    if ($("#artistSearch").val() != "") {
+    if ($(".searchBar").attr("searchType") === "artistSearch" && $(".searchBar").val() != "") {
         artistPopulated = true;
         validSearch = true;
-        addPerformers = $("#artistSearch").val();
-        console.log("artist: " + $("#artistSearch").val());
-    }
-    //if a venue is populated, the search is valid
-    if ($("#venueSearch").val() != "") {
+        addPerformers = $(".searchBar").val();
+        console.log("artist: " + $(".searchBar").val());
+    }else if ($(".searchBar").attr("searchType") === "venueSearch" && $(".searchBar").val() != "") {
+        //if a venue is populated, the search is valid
         venuePopulated = true;
         validSearch = true;
-        addVenue = $("#venueSearch").val();
-        console.log("venue: " + $("#venueSearch").val());
-    }
-    if ($("#zipSearch").val() != "") {
+        addVenue = $(".searchBar").val();
+        console.log("venue: " + $(".searchBar").val());
+    }else if ($(".searchBar").attr("searchType") === "zipSearch" && $(".searchBar").val().length === 5) {
         ////////////////////////////////////////////////////////////////////////////
         //the Seek Geek API accepts zips for location searches
         //parse the zip to an int to see if its a valid US zip
         //if not then display message///////////////////////////////////////////////////////////////////////////
         locationPopulated = true;
         validSearch = true;
-        addLocationZip = $("#zipSearch").val();
+        addLocationZip = $(".searchBar").val();
         //addRadius = $("#radius").val();
-        console.log("location: " + $("#zipSearch").val());
+        console.log("location: " + $(".searchBar").val());
     }
 
     //If a start date is added but not the end date, Default end date to be the same as start date.//////////////////////
@@ -109,19 +113,17 @@ function validateSearchForm() {
     //if the search is accepted, clear the input boxes for the next query
     if (validSearch) {
         //clear the input boxes
-        $("#venueSearch").val("");
-        $("#zipSearch").val("");
-        $("#artistSearch").val("");
+        $(".searchBar").val("")
         $("#startDateSearch").val("");
         $("#endDateSearch").val("");
 
-        //clear the stored variables to prepare for the next search
-        addPerformers = "";
-        addLocationZip = "";
-        addRadius = "25mi"; //this is the default
-        addVenue = "";
-        addStartDate = "";
-        addEndDate = "";
+        //clear the stored variables to prepare for the next search////////////////////////////////////////////this needs to be moved to a reset function
+        // addPerformers = "";
+        // addLocationZip = "";
+        // addRadius = "25mi"; //this is the default
+        // addVenue = "";
+        // addStartDate = "";
+        // addEndDate = "";
 
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +133,7 @@ function validateSearchForm() {
 }
 
 function formSearchQuery (apiToQuery){
-    // debugger;
+    debugger;
     var returnQuery = ""
 
     //add the initial domain and endpoints
@@ -154,10 +156,6 @@ function formSearchQuery (apiToQuery){
 
         if ($("#startDateSearch").val() != "") {
             debugger;
-            // //format the date into the format reequired by the API (YYYY-MM-DD)
-            // var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
-            // var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
-
             //add dates filter based on search term for each API
             addStartDate = $("#startDateSearch").val();
             //if end date is populated use it else default it to the start date
