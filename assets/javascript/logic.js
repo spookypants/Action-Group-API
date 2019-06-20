@@ -59,19 +59,19 @@ $("#artistSearch, #venueSearch, #zipSearch").click(function(){
     if (this.id == 'artistSearch') {
         console.log("artist search");
         $(".searchBar").attr("searchType", "artistSearch");
-        $(".searchBar").attr("placeholder", "Enter Artist Name:");
+        $(".searchBar").attr("placeholder", "Enter Artist Name...");
         $("#searchSelectBtn").text("Artist");
     }
     else if (this.id == 'venueSearch') {
         console.log("venue search");
         $(".searchBar").attr("searchType", "venueSearch");
-        $(".searchBar").attr("placeholder", "Enter Venue Name:");
+        $(".searchBar").attr("placeholder", "Enter Venue Name...");
         $("#searchSelectBtn").text("Venue");
     }
     else if (this.id == 'zipSearch') {
         console.log("zip search");
         $(".searchBar").attr("searchType", "zipSearch");
-        $(".searchBar").attr("placeholder", "Enter a 5 digit Zip:");
+        $(".searchBar").attr("placeholder", "Enter a 5 digit Zip Code...");
         $("#searchSelectBtn").text("Zip");
     }
 })
