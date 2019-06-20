@@ -25,12 +25,16 @@ var seatGeekQuery = "https://api.seatgeek.com/2/events?client_id=MTcwMTc2ODJ8MTU
 var youTubeQuery = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&order=viewCount&type=video&videoEmbeddable=true&key=AIzaSyDKMnHY4LsuosAckGD5kSmHYrumOVHewpI&q=";
 var addPerformers = "";
 var addLocationZip = "";
-var addRadius = "25mi";
+var addRadius = "25mi";//this is the default
 var addVenue = "";
 var addStartDate = "";
 var addEndDate = "";
 var addMoreResults = false; //turn this to true when add more results id clicked///////////////////////////////////
 var eventList = new Array();
+var graphEvents = new Array();
+var graphPrices = new Array();
+var graphColors = ['#769FB6', '#E1F2FE', '#373E40', '#188FA7'];
+var graphHighestMaxPrice = 400;
 
 //when the user submits a search term incorporate it into the event search query
 $("#searchBtn").on("click", function (event) {
@@ -42,13 +46,13 @@ $("#searchBtn").on("click", function (event) {
         $("#events").empty();
         finalSearchQuery = formSearchQuery("seatGeek");
         getSearchResults(finalSearchQuery);
-        // displayYouTubeVideo();
+        displayYouTubeVideo();
 
     } else {
-        //don't do anything if the search form is not valid
+        //don't do anything if the search form is not valid & alert user////////////////////////////////////////////
         return;
     }
-});
+})
 
 // DROPDOWN SEARCH BUTTON ID SETTING FUNCTION by GABE
 $("#artistSearch, #venueSearch, #zipSearch").click(function(){
@@ -75,20 +79,20 @@ function validateSearchForm() {
     var locationPopulated = false;
     var validSearch = true;
     //if an artist is populated, the search is valid
-    if($("#artistSearch").val() != ""){
+    if ($("#artistSearch").val() != "") {
         artistPopulated = true;
         validSearch = true;
         addPerformers = $("#artistSearch").val();
         console.log("artist: " + $("#artistSearch").val());
     }
     //if a venue is populated, the search is valid
-    if($("#venueSearch").val() != ""){
+    if ($("#venueSearch").val() != "") {
         venuePopulated = true;
         validSearch = true;
         addVenue = $("#venueSearch").val();
         console.log("venue: " + $("#venueSearch").val());
     }
-    if($("#zipSearch").val() != ""){
+    if ($("#zipSearch").val() != "") {
         ////////////////////////////////////////////////////////////////////////////
         //the Seek Geek API accepts zips for location searches
         //parse the zip to an int to see if its a valid US zip
@@ -104,17 +108,27 @@ function validateSearchForm() {
 
     //if the search is accepted, clear the input boxes for the next query
     if (validSearch) {
+        //clear the input boxes
         $("#venueSearch").val("");
         $("#zipSearch").val("");
         $("#artistSearch").val("");
-        //$("#startDateSearch").val("");
-        //$("#endDateSearch").val("");
+        $("#startDateSearch").val("");
+        $("#endDateSearch").val("");
+
+        //clear the stored variables to prepare for the next search
+        addPerformers = "";
+        addLocationZip = "";
+        addRadius = "25mi"; //this is the default
+        addVenue = "";
+        addStartDate = "";
+        addEndDate = "";
+
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //add appropriate messages to message box
     /////////////////////////////////////////////////////
     return validSearch;
-};
+}
 
 function formSearchQuery (apiToQuery){
     // debugger;
@@ -127,30 +141,30 @@ function formSearchQuery (apiToQuery){
         if (addPerformers != "") {
             returnQuery += "&q=" + addPerformers.replace(/\s+/g, "+");
         }
-        if(addLocationZip != ""){
+        if (addLocationZip != "") {
             returnQuery += "&geoip=" + addLocationZip + "&range=" + addRadius;
         }
-        if(addVenue != ""){
-            if(addPerformers != ""){
+        if (addVenue != "") {
+            if (addPerformers != "") {
                 returnQuery += "&" + addVenue;
-            }else{
+            } else {
                 returnQuery += "&q=" + addVenue;
             }
         }
-    
-        if($("#startDateSearch").val() != ""){
+
+        if ($("#startDateSearch").val() != "") {
             debugger;
-            //format the date into the format reequired by the API (YYYY-MM-DD)
-            var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
-            var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
+            // //format the date into the format reequired by the API (YYYY-MM-DD)
+            // var startDate = moment($("#startDateSearch").val(), "MM/DD/YYYY");
+            // var endDate = moment($("#endDateSearch").val(), "MM/DD/YYYY");
 
             //add dates filter based on search term for each API
-            addStartDate = startDate.format("YYYY-MM-DD");
+            addStartDate = $("#startDateSearch").val();
             //if end date is populated use it else default it to the start date
-            if($("#endDateSearch").val != ""){
-                addEndDate = endDate.format("YYYY-MM-DD");
+            if($("#endDateSearch").val() != ""){
+                addEndDate = $("#endDateSearch").val();
             }else{
-                addEndDate = startDate.format("YYYY-MM-DD");
+                addEndDate = $("#startDateSearch").val();
             }
             returnQuery += "&datetime_utc.gte=" + addStartDate + "&datetime_utc.lte=" + addEndDate;
         }
@@ -165,7 +179,7 @@ function formSearchQuery (apiToQuery){
     }
 
     return returnQuery;
-};
+}
 
 //these are the AJAX queries to get the EVENTS results
 //This is ONLY to get results from SeatGeek, EventBright and Meetup
@@ -184,6 +198,7 @@ function getSearchResults(queryStr) {
             var resultSet = response.events;
             writeRecords(resultSet, "SeatGeek");
             displayEventCards();
+            displayGraph();
         } else {
             $("#events").append('<p>' + "No matching events found." + '</p>');
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,10 +213,7 @@ function getSearchResults(queryStr) {
 //Write the records to the DB
 function writeRecords(resultSet, source) {
     //debugger;
-    //clear the displayed events list from the Firebase database
-    // if(!addMoreResults){
-    //     db.ref("events").removeValue();
-    // }
+
     for (var i = 0; i < resultSet.length; i++) {
         var recordData = {
             title: resultSet[i].title,
@@ -223,14 +235,13 @@ function writeRecords(resultSet, source) {
             venueCapacity: resultSet[i].venue.capacity
         }
 
-        if (resultSet[i].performers.length < 4){
+        if (resultSet[i].performers.length < 4) {
             recordData.performers = resultSet[i].performers
         }
         else {
             recordData.performers = resultSet[i].performers.slice(0, 3);
         }
         //commit the new row to the DB
-        //debugger;
         //console.log(recordData);
         var eventUID = db.ref("events").push(JSON.stringify(recordData)).key;
         recordData.fbId = eventUID;
@@ -239,71 +250,185 @@ function writeRecords(resultSet, source) {
     console.log(eventList);
 
 }
-// function displayYouTubeVideo() {
-//     //var query = "brad%20paisley"
-//     var queryUrl = formSearchQuery("youTube");
-//     $("#youtube").empty();
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET"
-//     }).then(function (response) {
-//         //console.log("Response", response);
-//         // dynamically create videos to our youtube div
-//         for (var i=0; i < response.items.length; i++){
-//             var video = $("<iframe>");
-//             video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
-//             video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
-//             $("#youtube").append(video);
-//         }
-
-//     })
-// }
-// displayYouTubeVideo();
-
-//function to call OpenWeatherMap API for event
-$(document).on("click", ".card", function () {
-    // console.log("clicked");
-    // debugger;
-    var weatherLoc = $(this).attr("id");
-    console.log(weatherLoc);
-    var weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + weatherLoc + "&units=imperial&APPID=cad8f1c5857468acbe6f6a9645983b49";
-    //empty current weather display location//
+function displayYouTubeVideo() {
+    //var query = "brad%20paisley"
+    var queryUrl = formSearchQuery("youTube");
+    $("#youtube").empty();
     $.ajax({
-        url: weatherURL,
-        method: "GET",
+        url: queryUrl,
+        method: "GET"
     }).then(function (response) {
-        debugger;
-        console.log("weather " + response.main);
+        //console.log("Response", response);
+        // dynamically create videos to our youtube div
+        for (var i = 0; i < response.items.length; i++) {
+            var video = $("<iframe>");
+            video.attr('width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen');
+            video.attr("src", "https://www.youtube.com/embed/" + response.items[i].id.videoId + "?enablejsapi=1")
+            $("#youtube").append(video);
+        }
 
-        //weather icon url is: http://openweathermap.org/img/w/10d.png - replace 10d.png with the weather icon from the array
     })
-});
+}
+
 //function to create cards and display event data
-function displayEventCards(){
+function displayEventCards() {
     var loops = 0
-    if(eventList.length > 4){
+    if (eventList.length > 4) {
         loops = 4;
-    }else{
+    } else {
         loops = eventList.length;
     }
-    for(var i = 0; i < loops; i++){
-        eventList[i]
+    for (var i = 0; i < loops; i++) {
+        eventList[i];
         //create card and image for event cards
         var image = $("<img class='card-img-top' src=" + eventList[i].image + " alt='Card image cap'>");
         var cityState = eventList[i].venueDisplayLocation.split(", ");
         console.log(cityState[0]);
         var city = eventList[i].venueCity.replace(" ", "+");
-        var card = [$("<div class = 'card eventCard' style='width: 17rem; margin: 10px' idValue=" + eventList[i].fbId + " id="+city+ " state="+cityState[1]+">").append
-            (image, $("<div class ='card-body'>").append(
-                $("<p>" + eventList[i].title + "</br>" + eventList[i].venueName +
-                    "</br>" + eventList[i].venueDisplayLocation + "</br>"
-                    + eventList[i].localTime + "</br>" + "<a href=" + eventList[i].venueURL + " class='btn btn-primary btn-outline-success' target='_blank'>Event URL</a>" + "</p>")))];
-
-
+        var card = [$("<div class = 'card eventCard' style='width: 17rem; margin: 10px' idValue=" + eventList[i].fbId + " id=" + city + " state=" + cityState[1] + ">").append
+            (image, $("<div class ='card-body'>").append($("<p class= 'eventDetails'>" + eventList[i].title + "</br>"
+                + eventList[i].venueName + "</br>" + eventList[i].venueDisplayLocation + "</br>" + moment(eventList[i].localTime).format("ddd MMM DD, YYYY hh:mma zz") + "</p>").append
+                ($("<button type='button' class='btn btn-secondary btn-modal' idValue=" + eventList[i].fbId + " >More Info</button>"))))];
         //display event data with information regarding event
         $("#events").append(card);
         $("#card").append(image);
         // $(card).attr("class=", eventList[i].fbId);
+
+        //added by avinash to create pricing array for events
+        //Limit event name to 15 character before storing
+        if(eventList[i].title.length < 16){
+            graphEvents.push(eventList[i].title);
+        }else{
+            graphEvents.push(eventList[i].title.substring(0, 15));
+        }
+        graphPrices.push([eventList[i].lowPrice, eventList[i].highPrice])
+        if(eventList[i].highPrice > graphHighestMaxPrice){
+            graphHighestMaxPrice = eventList[i].highPrice;
+        }
     }
+}
+
+$(document).on("click", ".btn-modal", function () {
+    console.log(this);
+    var matchingId = $(this).attr("idvalue");
+    for (var i = 0; i < eventList.length; i++) {
+        if (matchingId === eventList[i].fbId) {
+            $(".modal-title").text(eventList[i].title);
+            $(".modalImage").attr("src", eventList[i].image);
+            $(".venueName").text(eventList[i].venueName);
+            $(".venueLocation").text(eventList[i].venueDisplayLocation);
+            $(".eventtime").text(moment(eventList[i].localTime).format("ddd MMM DD, YYYY hh:mma z"));
+            $(".prices").text("Low Price: $" + eventList[i].lowPrice + " - High Price: $" + eventList[i].highPrice);
+            $(".eventURL").attr("href", eventList[i].venueURL);
+            $("#eventModal").modal("show");
+        }
+    }
+})
+
+//this function displays a graph from the ticket price data from the events displayed 
+function displayGraph(){
+    var xscale = d3.scale.linear()
+    .domain([0, graphHighestMaxPrice])//this is the spread of the ticket prices min to max
+    .range([0, 270]); //this is the width of our grid
+
+    var yscale = d3.scale.linear()
+        .domain([0, graphEvents.length])//this is the number of events in our list
+        .range([0, 250]);//this is the height of our grid
+
+    var colorScale = d3.scale.quantize()
+        .domain([0, graphEvents.length])//this is the number of events in our list
+        .range(graphColors);//this is the color to apply to each event in list
+
+    var canvas = d3.select('#graphCell')//this is the size of our chart
+        .append('svg')
+        .attr({
+        'width': 400,
+        'height': 300
+        });
+
+    var xAxis = d3.svg.axis();
+    if(parseInt(graphHighestMaxPrice) > 3000){
+        xAxis
+        .orient('bottom')
+        .scale(xscale)
+        .tickFormat(d3.format("s"))
+    }else{
+            xAxis
+            .orient('bottom')
+            .scale(xscale)
+        }
+    
+
+  var yAxis = d3.svg.axis();
+  yAxis
+    .orient('left')
+    .scale(yscale)
+    .tickSize(2)
+    .tickFormat(function(d, i) {
+      return graphEvents[i];
+     })
+    .tickValues(d3.range(10));
+
+  var y_xis = canvas.append('g')
+    .attr("transform", "translate(100,15)")
+    .attr('id', 'yaxis')
+    .call(yAxis);
+
+  var x_xis = canvas.append('g')
+    .attr("transform", "translate(100,262)")
+    .attr('id', 'xaxis')
+    .call(xAxis);
+
+  var chart = canvas.append('g')
+    .attr("transform", "translate(100,0)")
+    .attr('id', 'bars')
+    .selectAll('rect')
+    .data(graphPrices)
+    .enter()
+    .append('rect')
+    .attr('height', 15)
+    .attr({
+      'x': function(d) {
+        return xscale(d[0]);
+      },
+      'y': function(d, i) {
+        return yscale(i) + 10;
+      }
+    })
+    .style('fill', function(d, i) {
+      return colorScale(i);
+    })
+    .attr('width', function(d) {
+      return 0;
+    });
+
+    var chart2 = canvas.append('g')
+    .attr('id', 'prices')
+    .selectAll('text')
+    .data(graphPrices)
+    .enter()
+    .append('text')
+    .text(function (d) {
+      return "$" + d[0] + " - $" + d[1];
+        })
+    .attr({
+      'x': function(d) {
+        return xscale (d[0]) + 100; 
+      },
+      'y': function(d, i) {
+        return yscale(i) + 36;
+      }
+    })
+    .attr("font-size", "12px");
+
+
+  var transit = d3.select("svg").selectAll("rect")
+    .data(graphPrices)
+    .text(function (d) {return "$" + d[0] + " - $" + d[1];})
+    .transition()
+    .duration(1000)
+    .attr("width", function(d) {
+      return xscale(d[1]) - xscale(d[0]);
+    })
 }
 

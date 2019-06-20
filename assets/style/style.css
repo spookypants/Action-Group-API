@@ -2,17 +2,19 @@
     max-height: 400px;
 } */
 
-#row {
-    align-content: center;
+.row {
+    display: inline;
 }
 
 .navbar-light {
+
     background-color:#e1f2fe;
 }
 
 .navbar-dark {
     background-color:#769fb6;
     color:white;
+
 }
 
 .navbar {
@@ -21,6 +23,10 @@
 
 .form-inline {
     width:100%;
+}
+
+#event-title {
+    text-align: center;
 }
 
 /* #searchform {
@@ -38,10 +44,16 @@
 
 .bad-carousel {
     width:100%;
+
 }
 
 #searchBtn {
     background-color: #769FB6;
+    width:100%;
+}
+
+#searchDrop {
+    background-color:#769FB6;
     width:100%;
 }
 
@@ -147,21 +159,8 @@ p {
     padding: 10px;
 }
 
-/* Event Details Page Formatting */
-
-#searchPic {
-    position: relative;
-    display: block;
-}
-
-img {
-    height: 300px;
-    width: 300px;
-}
-
-#searchResults {
-    background-color: rgb(235, 232, 224);
-    padding-top: 50px;
+.eventDetails {
+    font-size:14px;
 }
 
 /* .v1 {
@@ -172,3 +171,26 @@ img {
     margin-left: -3px;
     top: 150px;
   } */
+
+
+/* styling for the graph */
+#xaxis .domain {
+fill: none;
+stroke: #000;
+}
+
+#xaxis text,
+#yaxis text {
+font-size: 12px;
+}
+  /* modal style formatting  */
+  .modal-title{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 24px;
+  }
+  .modal-body{
+    font-family: 'Righteous', cursive;
+    font-size:20px;
+  }
+  
+ 
