@@ -27,7 +27,6 @@ It can be difficult to easily assemble event relevant information to help plan e
 To provide a dashboard/platform to assemble information, resources, and media relevant to events a user may plan to attend
 
 ### Identify and Prioritize User Stories
-As a _____, I want _____, so that I can _____;
 
 As a USER, I want TO BE ABLE TO ASSEMBLE RELEVANT INFORMATION AND MEDIA REGARDING EVENTS WHICH I PLAN TO ATTEND, so that I can ENGAGE MEANINGFULLY AND COMPREHENSIVELY WITH THOSE EVENTS;
 
